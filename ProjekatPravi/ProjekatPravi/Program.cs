@@ -11,6 +11,7 @@ namespace ProjekatPravi
         static void Main(string[] args)
         {
             Console.WriteLine("ACA INFORMACA");
+            Console.WriteLine("jel radi ovo sokocalo");
         }
     }
 }

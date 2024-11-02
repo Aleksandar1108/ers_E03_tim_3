@@ -12,6 +12,7 @@ namespace ProjekatPravi
         {
             Console.WriteLine("ACA INFORMACA");
             Console.WriteLine("jel radi ovo sokocalo");
+            Console.WriteLine("IMA LI PICKE");
         }
     }
 }

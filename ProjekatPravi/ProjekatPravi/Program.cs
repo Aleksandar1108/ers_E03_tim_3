@@ -10,7 +10,7 @@ namespace ProjekatPravi
     {
         static void Main(string[] args)
         {
-            
+            Console.WriteLine("ACA INFORMACA");
         }
     }
 }

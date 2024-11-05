@@ -5,3 +5,9 @@
 /.vs
 /ProjekatPravi/ProjekatPravi/obj/Debug
 /ProjekatPravi/.vs/ProjekatPravi
+/Application/obj
+/Domain/obj
+/Services/obj
+/Application/bin/Debug/net8.0
+/Domain/bin/Debug/net8.0
+/Services/bin/Debug/net8.0

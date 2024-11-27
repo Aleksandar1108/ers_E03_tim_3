@@ -1,0 +1,7 @@
+C:\Users\David\source\repos\ers_E03_tim_3\ERS 2024_2025\UDPServer\UDPClient\bin\Debug\UDPClient.exe.config
+C:\Users\David\source\repos\ers_E03_tim_3\ERS 2024_2025\UDPServer\UDPClient\bin\Debug\UDPClient.exe
+C:\Users\David\source\repos\ers_E03_tim_3\ERS 2024_2025\UDPServer\UDPClient\bin\Debug\UDPClient.pdb
+C:\Users\David\source\repos\ers_E03_tim_3\ERS 2024_2025\UDPServer\UDPClient\obj\Debug\UDPClient.csproj.AssemblyReference.cache
+C:\Users\David\source\repos\ers_E03_tim_3\ERS 2024_2025\UDPServer\UDPClient\obj\Debug\UDPClient.csproj.CoreCompileInputs.cache
+C:\Users\David\source\repos\ers_E03_tim_3\ERS 2024_2025\UDPServer\UDPClient\obj\Debug\UDPClient.exe
+C:\Users\David\source\repos\ers_E03_tim_3\ERS 2024_2025\UDPServer\UDPClient\obj\Debug\UDPClient.pdb

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Domain.Repozitorijum.RepozitorijumHeroji
+namespace Domain.Repozitorijum.RepozitorijumOruzje
 {
-    public class OruzjeRepozitorijum : IOruzja
+    public class OruzjeRepozitorijum : IOruzjaRepozitorijum
     {
         public static List<Oruzje> listaOruzja = [];
 
@@ -31,14 +31,14 @@ namespace Domain.Repozitorijum.RepozitorijumHeroji
 
         public bool DodajOruzje(Oruzje oruzje)
         {
-            foreach(Oruzje or in listaOruzja)
+            foreach (Oruzje or in listaOruzja)
             {
-                if(or.NazivOruzja == oruzje.NazivOruzja)
+                if (or.NazivOruzja == oruzje.NazivOruzja)
                 {
                     Console.WriteLine("\nOruzje vec postoji");
                     return false;
                 }
-            } 
+            }
             listaOruzja.Add(oruzje);
             Console.WriteLine("\nOruzje uspesno dodato");
             return true;
@@ -46,13 +46,13 @@ namespace Domain.Repozitorijum.RepozitorijumHeroji
 
         public Oruzje PronadjiOruzje(string NazivOruzja)
         {
-            foreach(Oruzje or in listaOruzja)
+            foreach (Oruzje or in listaOruzja)
             {
-                if(or.NazivOruzja == NazivOruzja)
+                if (or.NazivOruzja == NazivOruzja)
                 {
                     Console.WriteLine("\nOruzje je uspesno pronadjeno");
                     return or;
-                    
+
                 }
             }
             Console.WriteLine("\nTrazeno oruzje nije pronadjeno");

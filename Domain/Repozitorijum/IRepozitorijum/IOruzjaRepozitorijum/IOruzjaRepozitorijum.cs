@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Repozitorijum.IRepozitorijum.IOruzja
 {
-    public interface IOruzja
+    public interface IOruzjaRepozitorijum
     {
         public bool DodajOruzje(Oruzje oruzje);
         public Oruzje PronadjiOruzje(string NazivOruzja);

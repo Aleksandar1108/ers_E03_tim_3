@@ -10,9 +10,9 @@ namespace Domain.Repozitorijum.RepozitorijumHeroji
 {
     public class RepozitorijumHeroji : IHerojiRepozitorijum
     {
-        public  List<Heroj> heroji = [];
+        public static List<Heroj> heroji = [];
 
-        public RepozitorijumHeroji()
+        static RepozitorijumHeroji()
         {
             heroji = [
                 new Heroj("Zeus",700, 200, 0),

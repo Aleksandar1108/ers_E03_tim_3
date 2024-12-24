@@ -4,9 +4,11 @@ using Domain.Repozitorijum.IRepozitorijum.IHerojRepozitorijum;
 using Domain.Enumeracija;
 using Domain.Modeli;
 using Domain.Repozitorijum;
+using Domain.Repozitorijum.RepozitorijumOruzje;
+using Domain.Repozitorijum.RepozitorijumNapitci;
 namespace Application
 {
-     public class Program
+    public class Program
     {
          static void Main(string[] args)
         {
@@ -28,6 +30,16 @@ namespace Application
             bool jeDod = or.DodajOruzje(novo);
             or.PronadjiOruzje("Bomba");
             
+
+            //dodavanje napitka
+            RepozitorijumNapitci nap = new RepozitorijumNapitci();
+
+            Napitak napitak = new Napitak("Napitak1",100,20,3);
+
+            bool dodat = nap.DodajNapitak(napitak);
+
+
+            nap.PronadjiNapitak("Napitak1");
         }
     }
 }

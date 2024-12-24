@@ -21,6 +21,13 @@ namespace Application
 
             repo.PronadjiHeroja("Rajko");
             repo.PronadjiHeroja("Thor");
+
+            OruzjeRepozitorijum or = new OruzjeRepozitorijum();
+            Oruzje novo = new Oruzje("NovoOruzje", 25,15,1);
+
+            bool jeDod = or.DodajOruzje(novo);
+            or.PronadjiOruzje("Bomba");
+            
         }
     }
 }

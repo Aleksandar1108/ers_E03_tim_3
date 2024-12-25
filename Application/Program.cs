@@ -6,6 +6,9 @@ using Domain.Modeli;
 using Domain.Repozitorijum;
 using Domain.Repozitorijum.RepozitorijumOruzje;
 using Domain.Repozitorijum.RepozitorijumNapitci;
+using Presentations.AutentifikacijaPrezentacije;
+using Domain.Services;
+
 namespace Application
 {
     public class Program
@@ -40,6 +43,11 @@ namespace Application
 
 
             nap.PronadjiNapitak("Napitak1");
+
+
+           
+
+
         }
     }
 }

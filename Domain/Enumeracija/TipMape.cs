@@ -8,6 +8,6 @@ namespace Domain.Enumeracija
 {
     public class TipMape
     {
-        public enum tipMape { LETNJA, ZIMSKA };
+        public enum Tip { LETNJA, ZIMSKA };
     }
 }

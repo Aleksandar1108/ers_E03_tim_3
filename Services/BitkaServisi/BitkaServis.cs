@@ -22,7 +22,7 @@ namespace Services.BitkaServisi
                 }
             }catch(Exception e)
             {
-                Console.WriteLine(e);
+                //Console.WriteLine(e);
                 return false;
             }
             return true;
@@ -36,13 +36,13 @@ namespace Services.BitkaServisi
                 if(entitet.ZivotniPoeni <= 0)
                 {
                     entitet.ZivotniPoeni = 0;
-                    // Ograničavanje vrednosti između 20 i 90
+                    
                     int vrednost = Math.Clamp(entitet.VrednostEntiteta, 20, 90);
                     napadac.StanjeNovcica += vrednost;
                 }
             }catch (Exception e) 
             {
-                Console.WriteLine(e);
+               // Console.WriteLine(e);
                 return false;
             }
             return true;

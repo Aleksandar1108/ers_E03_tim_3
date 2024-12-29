@@ -35,13 +35,13 @@ namespace Domain.Repozitorijum.RepozitorijumHeroji
             {
                 if(her.NazivHeroja == hero.NazivHeroja)
                 {
-                    Console.WriteLine("Heroj sa tim nazivom vec postoji!\n");
+                    //Console.WriteLine("Heroj sa tim nazivom vec postoji!\n");
                     return false;
                 }
 
             }
             heroji.Add(hero);
-            Console.WriteLine("Heroj je uspesno dodat u listu!\n");
+            //Console.WriteLine("Heroj je uspesno dodat u listu!\n");
             return true;
 
         }  
@@ -57,7 +57,7 @@ namespace Domain.Repozitorijum.RepozitorijumHeroji
                 }
               
             }
-            Console.WriteLine("Nismo uspeli da pronadjemo heroja sa datim imenom!\n");
+           // Console.WriteLine("Nismo uspeli da pronadjemo heroja sa datim imenom!\n");
             return null;
         }
 

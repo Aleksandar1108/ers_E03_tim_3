@@ -17,7 +17,7 @@ namespace Domain.Modeli
         public int BrPomocnihEntiteta { get; set; } = 0;
 
 
-        public Mape() { }
+       
 
         public Mape(string nazm, TipMape tm, int mbi, string nPt, string nCt, int brpE)
         {

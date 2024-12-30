@@ -33,12 +33,10 @@ namespace Domain.Repozitorijum.RepozitorijumNapitci
             {
                 if(nap.NazivNapitka == napitak.NazivNapitka)
                 {
-                    Console.WriteLine("Napitak sa tim imenom vec postoji!\n");
                     return false;
                 }
             }
             listaNapitaka.Add(napitak);
-            Console.WriteLine("Napitak uspesno dodat!\n");
             return true;
             
         }
@@ -49,13 +47,12 @@ namespace Domain.Repozitorijum.RepozitorijumNapitci
             {
                 if(nap.NazivNapitka == nazivNapitka)
                 {
-                    Console.WriteLine("Napitak je uspesno pronadjen!\n");
                     return nap;
                 }
             }
 
-            Console.WriteLine("Trazeni napitak nije pronadjen!\n");
-            return null;
+          
+            return new Napitak();
 
         }
     }

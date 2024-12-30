@@ -35,13 +35,13 @@ namespace Domain.Repozitorijum.RepozitorijumHeroji
             {
                 if(her.NazivHeroja == hero.NazivHeroja)
                 {
-                    //Console.WriteLine("Heroj sa tim nazivom vec postoji!\n");
+                    
                     return false;
                 }
 
             }
             heroji.Add(hero);
-            //Console.WriteLine("Heroj je uspesno dodat u listu!\n");
+            
             return true;
 
         }  
@@ -52,13 +52,11 @@ namespace Domain.Repozitorijum.RepozitorijumHeroji
             {
                 if(her.NazivHeroja == naziv)
                 {
-                    Console.WriteLine("Heroj pronadjen!\n");
                     return her;
                 }
               
             }
-           // Console.WriteLine("Nismo uspeli da pronadjemo heroja sa datim imenom!\n");
-            return null;
+            return new Heroj();
         }
 
         public void IspisiHeroje()

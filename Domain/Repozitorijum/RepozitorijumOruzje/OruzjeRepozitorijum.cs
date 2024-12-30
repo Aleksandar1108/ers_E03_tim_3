@@ -34,13 +34,11 @@ namespace Domain.Repozitorijum.RepozitorijumOruzje
             foreach (Oruzje or in listaOruzja)
             {
                 if (or.NazivOruzja == oruzje.NazivOruzja)
-                {
-                    Console.WriteLine("\nOruzje vec postoji");
+                {    
                     return false;
                 }
             }
             listaOruzja.Add(oruzje);
-            Console.WriteLine("\nOruzje uspesno dodato");
             return true;
         }
 
@@ -50,13 +48,11 @@ namespace Domain.Repozitorijum.RepozitorijumOruzje
             {
                 if (or.NazivOruzja == NazivOruzja)
                 {
-                    Console.WriteLine("\nOruzje je uspesno pronadjeno");
                     return or;
 
                 }
             }
-            Console.WriteLine("\nTrazeno oruzje nije pronadjeno");
-            return null;
+            return new Oruzje();
         }
     }
 }

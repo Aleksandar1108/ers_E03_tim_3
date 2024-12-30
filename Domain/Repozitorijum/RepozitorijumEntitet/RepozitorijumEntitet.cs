@@ -31,13 +31,10 @@ namespace Domain.Repozitorijum.RepozitorijumEntitet
             {
                 if(en.NazivEntiteta == entitet.NazivEntiteta)
                 {
-                    Console.WriteLine("Entitet sa tim imenom postoji!\n");
                     return false;
                 }
             }
             entiteti.Add(entitet);
-            Console.WriteLine("Uspesno ste dodali novi entitet!\n");
-
             return true;
         }
 
@@ -47,7 +44,6 @@ namespace Domain.Repozitorijum.RepozitorijumEntitet
             {
                 if(e.NazivEntiteta == naziv)
                 {
-                    Console.WriteLine("Uspesno pronadjen entitet!\n");
                     return e;
                 }
             }

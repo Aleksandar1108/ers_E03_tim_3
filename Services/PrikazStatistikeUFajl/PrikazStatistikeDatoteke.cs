@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Services.PrikazStatistikeUFajl
 {
-    public class PrikazStatistikeDatoteke : IPrikazStatistike
+    public class PrikazStatistikeDatoteke : IPrikazStatistikeDatoteka
     {
         private string nazivDat;
 
@@ -17,12 +17,12 @@ namespace Services.PrikazStatistikeUFajl
             this.nazivDat = nazivDat;
         }
 
-        public void Prikazi(string nazMape, List<Heroj> plaviTim, List<Heroj> crveniTim, decimal ukupnaProdaja)
+        public void Prikazi(Mape mapa, List<Heroj> plaviTim, List<Heroj> crveniTim, decimal ukupnaProdaja, string imeDatoteke)
         {
             using (StreamWriter datoteka = new StreamWriter(nazivDat,true))
             {
                 datoteka.WriteLine("*********************************\n");
-                datoteka.WriteLine($"Mapa: {nazMape}");
+                datoteka.WriteLine($"Mapa: {mapa}");
                 datoteka.WriteLine($"Plavi tim: ");
                 foreach(Heroj h in plaviTim)
                 {

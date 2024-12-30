@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Domain.Modeli;
 using Domain.Services;
-namespace Services.AutentifikacioniServis
+namespace Domain.Repozitorijum.AutentifikacioniServis
 {
-    public class AutentifikacioniServis:IServisAutentifikacije    
+    public class AutentifikacioniServis : IServisAutentifikacije
     {
         private static readonly List<Korisnik> korisnici;
 
@@ -20,9 +20,9 @@ namespace Services.AutentifikacioniServis
         }
         public (bool, Korisnik) Prijava(string korisnickoIme, string lozinka)
         {
-            foreach(Korisnik kor in korisnici)
+            foreach (Korisnik kor in korisnici)
             {
-                if(kor.KorisnickoIme.Equals(korisnickoIme) && kor.Lozinka.Equals(lozinka))
+                if (kor.KorisnickoIme.Equals(korisnickoIme) && kor.Lozinka.Equals(lozinka))
                 {
 
                     return (true, kor);

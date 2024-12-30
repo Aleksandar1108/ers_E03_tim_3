@@ -26,9 +26,9 @@ namespace Presentations.AutentifikacijaPrezentacije
                 do
                 {
                     Console.WriteLine("\nUnesite korisnicko ime: ");
-                    KorisnickoIme = Console.ReadLine();
+                    KorisnickoIme = Console.ReadLine() ?? "";
                     Console.WriteLine("\nUnesite lozinku: ") ;
-                    Lozinka = Console.ReadLine() ?? "" ;
+                    Lozinka = Console.ReadLine() ?? "";
 
                     bool uspesno;
                     Korisnik k = new Korisnik();

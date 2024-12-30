@@ -26,6 +26,47 @@ namespace Domain.Modeli
             DostupnaKolicina = dostupnaKol;
         }
 
+        public int Cena
+        {
+            get { return CenaKomada;}
+            set
+            {
+                if(value < 0)
+                {
+                    throw new ArgumentException(nameof(value), "Cena oruzja mora biti pozitivna vrednost!");
+                }
+                CenaKomada = value;
+            }
+        }
+
+        public int Bppzn
+        {
+            get { return PojacaniPoeniZaNapad; }
+            set
+            {
+                if(value <15 || value > 40)
+                {
+                    throw new ArgumentException(nameof(value), "Broj poena za napad mora biti izmedju 15 i 40!");
+
+                }
+                PojacaniPoeniZaNapad = value;
+            }
+        }
+
+        public int Kolicina
+        {
+            get { return DostupnaKolicina; }
+            set
+            {
+                if(value < 0)
+                {
+                    throw new ArgumentException(nameof(value), "Kolicina za kupovinu mora biti pozitivna!");
+
+                }
+                DostupnaKolicina= value;
+            }
+        }
+
         public override string? ToString()
         {
             return "\nNaziv oruzja: "+ NazivOruzja + 

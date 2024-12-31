@@ -10,7 +10,7 @@ namespace Domain.Modeli
     public class Mape
     {
         public string NazivMape { get; set; } = string.Empty;
-        public TipMape TipMape { get; set; }
+        public Enumeracija.TipMape.Tip TipMape { get; set; }
         public int MaxBrojIgraca { get; set; } = 0;
         public string NazivPlavogTima { get; set; } = string.Empty;
         public string NazivCrvenogTima { get; set; } = string.Empty;
@@ -19,7 +19,7 @@ namespace Domain.Modeli
 
        
 
-        public Mape(string nazm, TipMape tm, int mbi, string nPt, string nCt, int brpE)
+        public Mape(string nazm, Enumeracija.TipMape.Tip tm, int mbi, string nPt, string nCt, int brpE)
         {
             NazivMape = nazm;
             TipMape = tm;

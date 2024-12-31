@@ -46,6 +46,8 @@ namespace Presentations.MeniZaStatistiku
                     case '2':
                         {
                             Console.WriteLine("Unesite naziv fajla u koji zelite da sacuvate statistiku");
+                            string nazivDatoteke = Console.ReadLine() ?? "statistikaBtike";
+                            prikazDat.Prikazi(mapa, plavi, crveni, ukupno, nazivDatoteke);
                             break;
                         }
                                      

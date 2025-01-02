@@ -17,9 +17,9 @@ namespace Presentations.IpsisMenija
     public class IspisMenia
     {
         Mape mapa;
-        Prodavnica prodavnica; 
+        Prodavnica prodavnica;
         //nasumicno generisanje mape 
-        //private List<Predmet> predmet
+        private List<Predmet> predmet;
         private readonly NasumicnoGenerisanjeMape nasumicnoGenerisanjeMape;
         private readonly IMapaRepozitorijum mapaRepozitorijum;
         //nasumicno generisanje prodavnice
@@ -84,7 +84,7 @@ namespace Presentations.IpsisMenija
                     case '2':
                         mapa = NasumicnoGenerisanjeMape.GenerisiNasumicnuMapu(mapaRepozitorijum.PregledMapa().ToList()); 
                         prodavnica = NasumicnoGenerisanjeProdavnice.GenerisiProdavnicu(prodavnicaRepozitorijum.PregledProdavnice().ToList());
-                        //predmeti = prodavnica.IspisiDostupneNapitkeIOruzja(); 
+                        //predmet = prodavnica.IspisiDostupneNapitkeIOruzja(); 
                         //(PlaviTim, CrveniTim) = timoviServis.KreirajTimove(MaxBrojIgraca, herojRepozitorijum,pregledHeroja().ToList());
                         Console.WriteLine("\nPodaci su uspesno izgenerisani");
                         break;

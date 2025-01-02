@@ -10,6 +10,8 @@ namespace Domain.Modeli
     {
         
         public int IdProdavnice { get; set; } = 0;
+
+      //  public List<Predmet> ListaOiN { get; set; }
         public List<Oruzje> Oruzja { get; set; } = new List<Oruzje>();
 
         public List<Napitak> Napici { get; set; } = new List<Napitak>();
@@ -23,6 +25,7 @@ namespace Domain.Modeli
             IdProdavnice = idProd;
             Oruzja = or;
             Napici = nap;
+            
         }
         public override string? ToString()
         {

@@ -50,6 +50,15 @@ namespace Domain.Repozitorijum.RepozitorijumPredmet
             return true;
         }
 
+        public List<Predmet>PregledPredmeta()
+        {
+            foreach(Predmet pred in listaPredmeta)
+            {
+                Console.WriteLine(pred.ToString());
+            }
+            return listaPredmeta;
+        }
+
         public Predmet PronadjiPredmet(string nazivPredmet)
         {
             foreach (Predmet pred in listaPredmeta)

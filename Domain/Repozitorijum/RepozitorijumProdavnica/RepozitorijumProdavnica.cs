@@ -1,4 +1,5 @@
 ﻿using Domain.Modeli;
+using Domain.Repozitorijum.IRepozitorijum.IPredmetRepozitorijum;
 using Domain.Repozitorijum.IRepozitorijum.IProdavnicaRepozitorijum;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,20 @@ namespace Domain.Repozitorijum.RepozitorijumProdavnica
 {
     public class RepozitorijumProdavnica : IProdavnicaRepozitorijum
     {
-        private readonly List<Prodavnica> prodavnicaList=new List<Prodavnica>();
+        private static readonly List<Prodavnica> prodavnicaList = [];
+        private static readonly IPredmetRepozitorijum PredmetRepozitorijum; 
+
+
+        static RepozitorijumProdavnica()
+        {
+            PredmetRepozitorijum = new Domain.Repozitorijum.RepozitorijumPredmet.RepozitorijumPredmet();
+            prodavnicaList = new List<Prodavnica>
+            {
+                //new Prodavnica (1,PredmetRepozitorijum.PregledPredmeta().ToList(),0),
+                //new Prodavnica (2,PredmetRepozitorijum.PregledPredmeta().ToList(),0),
+                //new Prodavnica (3,PredmetRepozitorijum.PregledPredmeta().ToList(),0)
+            };
+        }
 
         public IEnumerable<Prodavnica> PregledProdavnice()
         {

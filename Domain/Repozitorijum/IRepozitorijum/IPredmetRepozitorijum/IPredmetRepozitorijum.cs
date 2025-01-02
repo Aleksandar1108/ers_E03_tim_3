@@ -11,5 +11,6 @@ namespace Domain.Repozitorijum.IRepozitorijum.IPredmetRepozitorijum
     {
         public bool DodajPredmet(Predmet predmet);
         public Predmet PronadjiPredmet(string nazivPredmet);
+        public List<Predmet> PregledPredmeta();
     }
 }

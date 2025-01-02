@@ -24,13 +24,49 @@ namespace Domain.Modeli
             Oruzja = or;
             Napici = nap;
         }
-
         public override string? ToString()
         {
             return "\nId Prodavnice: " + IdProdavnice+
                    "\nLista oruzja: " + Oruzja +
                    "\nLista napitaka: " +Napici+
                    "\nUkupna prodata vrednost: " + UkupnaProdataVrednost;
+        }
+        public void IspisiDostupneNapitkeIOruzja()
+        {
+
+            Console.WriteLine("Dostupni napici:");
+            if (Napici.Any())
+            {
+                foreach (var napitak in Napici)
+                {
+                    Console.WriteLine(napitak.ToString()); 
+
+                }
+            }
+
+            else
+            {
+                Console.WriteLine("Nema dostupnih napitaka.");
+            }
+
+            Console.WriteLine("\nDostupna oruzja:");
+            if (Oruzja.Any())
+            {
+
+                foreach (var oruzje in Oruzja)
+
+                {
+
+                    Console.WriteLine(oruzje.ToString()); 
+
+                }
+            }
+            else
+            {
+
+                Console.WriteLine("Nema dostupnih oruzja.");
+
+            }
         }
     }
 }

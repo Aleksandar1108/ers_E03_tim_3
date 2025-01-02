@@ -1,5 +1,9 @@
 ﻿using Domain.Modeli;
+using Domain.NasumicnaGenerisanja;
 using Domain.Repozitorijum.IRepozitorijum.IHerojRepozitorijum;
+using Domain.Repozitorijum.IRepozitorijum.IMapaRepozitorijum;
+using Domain.Repozitorijum.IRepozitorijum.IProdavnicaRepozitorijum;
+using Domain.Repozitorijum.RepozitorijumProdavnica;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +19,12 @@ namespace Presentations.IpsisMenija
         Mape mapa;
         Prodavnica prodavnica; 
         //nasumicno generisanje mape 
-        //nasumicno generisanje prodavnice 
+        //private List<Predmet> predmet
+        private readonly NasumicnoGenerisanjeMape nasumicnoGenerisanjeMape;
+        private readonly IMapaRepozitorijum mapaRepozitorijum;
+        //nasumicno generisanje prodavnice
+        private readonly NasumicnoGenerisanjeProdavnice nasumicnoGenerisanjeProdavnice;
+        private readonly IProdavnicaRepozitorijum prodavnicaRepozitorijum;
         //ImapaRepozitorijum 
         //IprodavnicaRepozitorijum 
         public List<Heroj> PlaviTim = new List<Heroj>();
@@ -73,11 +82,11 @@ namespace Presentations.IpsisMenija
                         }
                         break;
                     case '2':
-                        //mapa = NasumicnoGenerisanjeMape.GenerisiMapu(mapaRepozitorijum.PregledMapa().ToList()); 
-                        //prodavnica = nasumicnoGenerisanjeProdavnice.GenerisiProdavnicu(prodavnicaRepozitorijum.pregledProdavnica.toList());
-                        //prodati = prodavnica. 
+                        mapa = NasumicnoGenerisanjeMape.GenerisiNasumicnuMapu(mapaRepozitorijum.PregledMapa().ToList()); 
+                        prodavnica = NasumicnoGenerisanjeProdavnice.GenerisiProdavnicu(prodavnicaRepozitorijum.PregledProdavnice().ToList());
+                        //predmeti = prodavnica.IspisiDostupneNapitkeIOruzja(); 
                         //(PlaviTim, CrveniTim) = timoviServis.KreirajTimove(MaxBrojIgraca, herojRepozitorijum,pregledHeroja().ToList());
-                        //Console.Writeline("\nPodaci su uspesno izgenerisani");
+                        Console.WriteLine("\nPodaci su uspesno izgenerisani");
                         break;
                     case '3':
                         List<Heroj> plavi = new List<Heroj>();

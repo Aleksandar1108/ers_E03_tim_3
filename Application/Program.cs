@@ -8,6 +8,8 @@ using Domain.Repozitorijum.RepozitorijumOruzje;
 using Domain.Repozitorijum.RepozitorijumNapitci;
 using Presentations.AutentifikacijaPrezentacije;
 using Domain.Services;
+using Presentations.IpsisMenija;
+using Presentations.MeniZaStatistiku;
 
 namespace Application
 {
@@ -15,37 +17,23 @@ namespace Application
     {
          static void Main(string[] args)
         {
-            RepozitorijumHeroji repo = new RepozitorijumHeroji();
+            Mape mapa = new Mape("naziv",TipMape.Tip.ZIMSKA, 10,"npt", "nct",4); // Pretpostavimo da ima podrazumevani konstruktor
+            Prodavnica prodavnica = new Prodavnica();
+            List<Heroj> plaviTim = new List<Heroj>();
+            List<Heroj> crveniTim = new List<Heroj>();
+           // IHerojiRepozitorijum herojRep = null; // Trebaš konkretan objekat koji implementira ovaj interfejs
+           // IPrikazStatistike prikaz; 
+           // IPrikazStatistikeDatoteka prikazDa;
+            //MeniZaStatistiku meniZaStatistiku = new MeniZaStatistiku(prikaz, prikazDa); // Pretpostavka o konstruktoru
 
-            //dodavanje novog heroja
-            Heroj noviHero = new Heroj("Thor",750,210, 0);
+            // Kreiranje instance klase IspisMenia
+            //IspisMenia ispisMenia = new IspisMenia(mapa, prodavnica, plaviTim, crveniTim, herojRep, meniZaStatistiku);
 
-            bool jeDodato = repo.DodajHeroja(noviHero);
-
-            repo.IspisiHeroje();
-
-            repo.PronadjiHeroja("Rajko");
-            repo.PronadjiHeroja("Thor");
-
-            OruzjeRepozitorijum or = new OruzjeRepozitorijum();
-            Oruzje novo = new Oruzje("NovoOruzje", 25,15,1);
-
-            bool jeDod = or.DodajOruzje(novo);
-            or.PronadjiOruzje("Bomba");
-            
-
-            //dodavanje napitka
-            RepozitorijumNapitci nap = new RepozitorijumNapitci();
-
-            Napitak napitak = new Napitak("Napitak1",100,20,3);
-
-            bool dodat = nap.DodajNapitak(napitak);
+            // Poziv metode PrikaziMeni
+            //ispisMenia.PrikaziMeni();
 
 
-            nap.PronadjiNapitak("Napitak1");
 
-
-           
 
 
         }

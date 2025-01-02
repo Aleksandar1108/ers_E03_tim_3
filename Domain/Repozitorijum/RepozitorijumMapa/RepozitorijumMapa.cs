@@ -10,11 +10,16 @@ namespace Domain.Repozitorijum.RepozitorijumMapa
 {
     public class RepozitorijumMapa : IMapaRepozitorijum
     {
-        
+        private readonly List<Mape> mape = new List<Mape>();
         public IEnumerable<Mape> PregledMapa()
         {
+            foreach (var mapa in mape)
+            {
+                Console.WriteLine(mapa.ToString());
+            }
 
-            return null;
+            return mape;
+           
         }
     }
 }

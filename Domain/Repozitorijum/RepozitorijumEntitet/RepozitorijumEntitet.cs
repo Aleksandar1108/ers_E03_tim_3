@@ -58,5 +58,9 @@ namespace Domain.Repozitorijum.RepozitorijumEntitet
             }
         }
 
+        public List<PomocniEntitet> PregledPomocnihEntiteta()
+        {
+            return entiteti;
+        }
     }
 }

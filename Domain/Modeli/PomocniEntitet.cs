@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Domain.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Domain.Modeli
 {
-    public class PomocniEntitet
+    public class PomocniEntitet 
     {
         public string NazivEntiteta { get; set; } = "";
 
@@ -28,5 +29,7 @@ namespace Domain.Modeli
         {
             return base.ToString();
         }
+
+      
     }
 }

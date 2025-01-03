@@ -10,6 +10,10 @@ using Presentations.AutentifikacijaPrezentacije;
 using Domain.Services;
 using Presentations.IpsisMenija;
 using Presentations.MeniZaStatistiku;
+using Domain.NasumicnaGenerisanja;
+using Domain.Repozitorijum.IRepozitorijum.IEntitetRepozitorijum;
+using Domain.Repozitorijum.IRepozitorijum.IMapaRepozitorijum;
+using Domain.Repozitorijum.IRepozitorijum.IProdavnicaRepozitorijum;
 
 namespace Application
 {
@@ -21,9 +25,9 @@ namespace Application
             Prodavnica prodavnica = new Prodavnica();
             List<Heroj> plaviTim = new List<Heroj>();
             List<Heroj> crveniTim = new List<Heroj>();
-           // IHerojiRepozitorijum herojRep = null; // Trebaš konkretan objekat koji implementira ovaj interfejs
-           // IPrikazStatistike prikaz; 
-           // IPrikazStatistikeDatoteka prikazDa;
+            // IHerojiRepozitorijum herojRep = null; // Trebaš konkretan objekat koji implementira ovaj interfejs
+            // IPrikazStatistike prikaz; 
+            // IPrikazStatistikeDatoteka prikazDa;
             //MeniZaStatistiku meniZaStatistiku = new MeniZaStatistiku(prikaz, prikazDa); // Pretpostavka o konstruktoru
 
             // Kreiranje instance klase IspisMenia
@@ -32,6 +36,10 @@ namespace Application
             // Poziv metode PrikaziMeni
             //ispisMenia.PrikaziMeni();
 
+
+
+
+       
 
 
 

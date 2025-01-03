@@ -14,5 +14,7 @@ namespace Domain.Repozitorijum.IRepozitorijum.IHerojRepozitorijum
         public Heroj PronadjiHeroja(string naziv);
 
         public void IspisiHeroje();
+
+        public List<Heroj> pregledHeroja();
     }
 }

@@ -1,9 +1,12 @@
 ﻿using Domain.Modeli;
 using Domain.NasumicnaGenerisanja;
+using Domain.Repozitorijum.IRepozitorijum.IEntitetRepozitorijum;
 using Domain.Repozitorijum.IRepozitorijum.IHerojRepozitorijum;
 using Domain.Repozitorijum.IRepozitorijum.IMapaRepozitorijum;
 using Domain.Repozitorijum.IRepozitorijum.IProdavnicaRepozitorijum;
+using Domain.Repozitorijum.RepozitorijumHeroji;
 using Domain.Repozitorijum.RepozitorijumProdavnica;
+using Domain.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,25 +22,30 @@ namespace Presentations.IpsisMenija
         Mape mapa;
         Prodavnica prodavnica;
         //nasumicno generisanje mape 
-        private List<Predmet> predmet=new List<Predmet>();
+      
         private readonly NasumicnoGenerisanjeMape nasumicnoGenerisanjeMape;
-        private readonly IMapaRepozitorijum mapaRepozitorijum;
+        
         //nasumicno generisanje prodavnice
         private readonly NasumicnoGenerisanjeProdavnice nasumicnoGenerisanjeProdavnice;
         private readonly IProdavnicaRepozitorijum prodavnicaRepozitorijum;
         //ImapaRepozitorijum 
+        private readonly IMapaRepozitorijum mapaRepozitorijum;
         //IprodavnicaRepozitorijum 
         public List<Heroj> PlaviTim = new List<Heroj>();
         public List<Heroj> CrveniTim = new List<Heroj>();
         //nasumicno generisanje timova 
         private readonly IHerojiRepozitorijum herojRep;
+        private readonly ITimoviServis timoviServis;
         //Interfejs za pomocni entitet 
+        IEntitetRepozitorijum pomocniEntitet;
         //interfejs za borbu 
+        private readonly IBorbaServis servis;
         //interfejs za tabelrani prikaz 
         //lista predmeta 
+        private List<Predmet> predmeti = new List<Predmet>();
         private readonly Presentations.MeniZaStatistiku.MeniZaStatistiku meniZaStatistiku;
 
-        public IspisMenia(Mape mapa, Prodavnica prodavnica, List<Heroj> plaviTim, List<Heroj> crveniTim, IHerojiRepozitorijum herojRep, MeniZaStatistiku.MeniZaStatistiku meniZaStatistiku, NasumicnoGenerisanjeMape nasumicnoGenerisanjeMape, IMapaRepozitorijum mapaRepozitorijum,NasumicnoGenerisanjeProdavnice nasumicnoGenerisanjeProdavnice,IProdavnicaRepozitorijum prodavnicaRepozitorijum)
+        public IspisMenia(Mape mapa, Prodavnica prodavnica, List<Heroj> plaviTim, List<Heroj> crveniTim, IHerojiRepozitorijum herojRep, MeniZaStatistiku.MeniZaStatistiku meniZaStatistiku, NasumicnoGenerisanjeMape nasumicnoGenerisanjeMape, IMapaRepozitorijum mapaRepozitorijum,NasumicnoGenerisanjeProdavnice nasumicnoGenerisanjeProdavnice,IProdavnicaRepozitorijum prodavnicaRepozitorijum,ITimoviServis timoviServis,IBorbaServis servis,IEntitetRepozitorijum pomocniEntitet)
         { 
             //ovde nam fale za nasumicno generisanje
             //to cemo dodati kad uradimo generisanje bitke, timova...
@@ -51,13 +59,16 @@ namespace Presentations.IpsisMenija
             this.mapaRepozitorijum = mapaRepozitorijum;
             this.nasumicnoGenerisanjeProdavnice = nasumicnoGenerisanjeProdavnice;
             this.prodavnicaRepozitorijum = prodavnicaRepozitorijum;
+            this.timoviServis = timoviServis;
+            this.servis = servis;
+            this.pomocniEntitet = pomocniEntitet;
         }
 
         public void PrikaziMeni()
         {
-            bool kraj = false; 
-
-            while(!kraj) 
+            bool kraj = false;
+            int maxBrojIgraca = 0;
+            while (!kraj) 
             {
                 Console.WriteLine("\n1.Odabir broja igraca");
                 Console.WriteLine("\n2.Nasumican unos podataka bitke");
@@ -69,7 +80,7 @@ namespace Presentations.IpsisMenija
                 if (string.IsNullOrWhiteSpace(unos))
                 continue;
 
-                switch(unos[0])
+                switch (unos[0])
                 {
                     case '1':
                         Console.WriteLine("\nUnesite maksimalan broj igraca u jednom timu");
@@ -81,38 +92,35 @@ namespace Presentations.IpsisMenija
                             return;
                         }
                         else
-                        { 
-                            int MaxBrojIgraca = int.Parse(brojIgraca);
+                        {
+                            maxBrojIgraca = int.Parse(brojIgraca);
                         }
                         break;
                     case '2':
-                        mapa = NasumicnoGenerisanjeMape.GenerisiNasumicnuMapu(mapaRepozitorijum.PregledMapa().ToList()); 
+                        mapa = NasumicnoGenerisanjeMape.GenerisiNasumicnuMapu(mapaRepozitorijum.PregledMapa().ToList());
                         prodavnica = NasumicnoGenerisanjeProdavnice.GenerisiProdavnicu(prodavnicaRepozitorijum.PregledProdavnice().ToList());
-                        predmet = prodavnica.IspisiDostupneNapitkeIOruzja(); 
-                        //(PlaviTim, CrveniTim) = timoviServis.KreirajTimove(MaxBrojIgraca, herojRepozitorijum,pregledHeroja().ToList());
+                        predmeti = prodavnica.IspisiDostupneNapitkeIOruzja();
+                        (PlaviTim, CrveniTim) = timoviServis.KreirajTimove(maxBrojIgraca, herojRep.pregledHeroja().ToList());
                         Console.WriteLine("\nPodaci su uspesno izgenerisani");
                         break;
                     case '3':
                         List<Heroj> plavi = new List<Heroj>();
-                        List<Heroj> crveni= new List<Heroj>();
+                        List<Heroj> crveni = new List<Heroj>();
                         int q = 0;
                         Console.WriteLine("\nBitka pocinje!");
-                        //(plavi,crveni,q) = servis.BorbaHeroja(PlaviTim, CrveniTim, pomocniEntitet.PregledPomocnihEntiteta().ToList(), predmeti);
-                     
-                        meniZaStatistiku.MeniStatistika(mapa,plavi,crveni,q);
-                       
+                        (plavi,crveni,q) = servis.BorbaHeroja(PlaviTim, CrveniTim, pomocniEntitet.PregledPomocnihEntiteta().ToList(), predmeti);
+
+                        meniZaStatistiku.MeniStatistika(mapa, plavi, crveni, q);
+
+                        break;
+                    default:
+                        Console.WriteLine("\nNeispravan unos, pokusajte ponovo!\n");
                         break;
                         
                 }
 
-
             }
-
-
-
         }
-
-
 
     }
 }

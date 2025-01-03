@@ -69,5 +69,10 @@ namespace Domain.Repozitorijum.RepozitorijumHeroji
                 Console.WriteLine("================================================================\n");
             }
         }
+
+        public List<Heroj> pregledHeroja()
+        {
+            return heroji;
+        }
     }
 }

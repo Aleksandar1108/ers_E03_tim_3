@@ -14,5 +14,7 @@ namespace Domain.Repozitorijum.IRepozitorijum.IEntitetRepozitorijum
         public PomocniEntitet PronadjiEntitet(string naziv);
 
         public void IspisiEntitet();
+
+        public List<PomocniEntitet> PregledPomocnihEntiteta();
     }
 }

@@ -34,42 +34,31 @@ namespace Domain.Modeli
                    "\nLista napitaka: " +Napici+
                    "\nUkupna prodata vrednost: " + UkupnaProdataVrednost;
         }
-        public void IspisiDostupneNapitkeIOruzja()
+        public List<Predmet> IspisiDostupneNapitkeIOruzja()
         {
-
-            Console.WriteLine("Dostupni napici:");
-            if (Napici.Any())
+            List<Predmet> dostupniPredmeti = new List<Predmet>();
+            
+            foreach(Oruzje oruzje in Oruzja)
             {
-                foreach (var napitak in Napici)
+                dostupniPredmeti.Add(new Predmet
                 {
-                    Console.WriteLine(napitak.ToString()); 
-
-                }
+                    NazivPredmeta = oruzje.NazivOruzja,
+                    CenaKomada = oruzje.CenaKomada,
+                    PojacaniPoeniZaNapad = oruzje.PojacaniPoeniZaNapad
+                });
             }
 
-            else
+            foreach(Napitak napitak in Napici)
             {
-                Console.WriteLine("Nema dostupnih napitaka.");
-            }
-
-            Console.WriteLine("\nDostupna oruzja:");
-            if (Oruzja.Any())
-            {
-
-                foreach (var oruzje in Oruzja)
-
+                dostupniPredmeti.Add(new Predmet
                 {
-
-                    Console.WriteLine(oruzje.ToString()); 
-
-                }
+                    NazivPredmeta = napitak.NazivNapitka,
+                    CenaKomada = napitak.Cena,
+                    PojacaniPoeniZaNapad = napitak.PojacaniPoeniZaNapad
+                });
             }
-            else
-            {
-
-                Console.WriteLine("Nema dostupnih oruzja.");
-
-            }
+            return dostupniPredmeti;
+            
         }
     }
 }

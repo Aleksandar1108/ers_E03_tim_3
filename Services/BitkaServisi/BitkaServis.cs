@@ -22,7 +22,7 @@ namespace Services.BitkaServisi
                 }
             }catch(Exception e)
             {
-                //Console.WriteLine(e);
+                Console.WriteLine(e);
                 return false;
             }
             return true;
@@ -42,7 +42,8 @@ namespace Services.BitkaServisi
                 }
             }catch (Exception e) 
             {
-               // Console.WriteLine(e);
+                Console.WriteLine(e);
+               
                 return false;
             }
             return true;

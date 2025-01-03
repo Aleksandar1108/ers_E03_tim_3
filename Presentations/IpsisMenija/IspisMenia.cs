@@ -19,7 +19,7 @@ namespace Presentations.IpsisMenija
         Mape mapa;
         Prodavnica prodavnica;
         //nasumicno generisanje mape 
-        private List<Predmet> predmet;
+        private List<Predmet> predmet=new List<Predmet>();
         private readonly NasumicnoGenerisanjeMape nasumicnoGenerisanjeMape;
         private readonly IMapaRepozitorijum mapaRepozitorijum;
         //nasumicno generisanje prodavnice
@@ -37,7 +37,7 @@ namespace Presentations.IpsisMenija
         //lista predmeta 
         private readonly Presentations.MeniZaStatistiku.MeniZaStatistiku meniZaStatistiku;
 
-        public IspisMenia(Mape mapa, Prodavnica prodavnica, List<Heroj> plaviTim, List<Heroj> crveniTim, IHerojiRepozitorijum herojRep, MeniZaStatistiku.MeniZaStatistiku meniZaStatistiku)
+        public IspisMenia(Mape mapa, Prodavnica prodavnica, List<Heroj> plaviTim, List<Heroj> crveniTim, IHerojiRepozitorijum herojRep, MeniZaStatistiku.MeniZaStatistiku meniZaStatistiku, NasumicnoGenerisanjeMape nasumicnoGenerisanjeMape, IMapaRepozitorijum mapaRepozitorijum,NasumicnoGenerisanjeProdavnice nasumicnoGenerisanjeProdavnice,IProdavnicaRepozitorijum prodavnicaRepozitorijum)
         { 
             //ovde nam fale za nasumicno generisanje
             //to cemo dodati kad uradimo generisanje bitke, timova...
@@ -47,6 +47,10 @@ namespace Presentations.IpsisMenija
             CrveniTim = crveniTim;
             this.herojRep = herojRep;
             this.meniZaStatistiku = meniZaStatistiku;
+            this.nasumicnoGenerisanjeMape = nasumicnoGenerisanjeMape;
+            this.mapaRepozitorijum = mapaRepozitorijum;
+            this.nasumicnoGenerisanjeProdavnice = nasumicnoGenerisanjeProdavnice;
+            this.prodavnicaRepozitorijum = prodavnicaRepozitorijum;
         }
 
         public void PrikaziMeni()
@@ -84,7 +88,7 @@ namespace Presentations.IpsisMenija
                     case '2':
                         mapa = NasumicnoGenerisanjeMape.GenerisiNasumicnuMapu(mapaRepozitorijum.PregledMapa().ToList()); 
                         prodavnica = NasumicnoGenerisanjeProdavnice.GenerisiProdavnicu(prodavnicaRepozitorijum.PregledProdavnice().ToList());
-                        //predmet = prodavnica.IspisiDostupneNapitkeIOruzja(); 
+                        predmet = prodavnica.IspisiDostupneNapitkeIOruzja(); 
                         //(PlaviTim, CrveniTim) = timoviServis.KreirajTimove(MaxBrojIgraca, herojRepozitorijum,pregledHeroja().ToList());
                         Console.WriteLine("\nPodaci su uspesno izgenerisani");
                         break;

@@ -1,6 +1,5 @@
 ﻿using Domain.Modeli;
 using Domain.Services;
-using Services.PrikazStatistikeKonzolno;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,14 +53,7 @@ namespace Presentations.MeniZaStatistiku
                 }
 
 
-            }
-
-
-
-
-           
-
-            
+            }  
 
         }
     }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Domain.Services;
-using Services.BitkaServisi;
+
 namespace Presentations.BitkaPrezentacija
 {
     public class BitkaPrezentacija

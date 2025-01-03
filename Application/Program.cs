@@ -14,17 +14,18 @@ using Domain.NasumicnaGenerisanja;
 using Domain.Repozitorijum.IRepozitorijum.IEntitetRepozitorijum;
 using Domain.Repozitorijum.IRepozitorijum.IMapaRepozitorijum;
 using Domain.Repozitorijum.IRepozitorijum.IProdavnicaRepozitorijum;
+using Domain.Repozitorijum.AutentifikacioniServis;
 
 namespace Application
 {
     public class Program
     {
-         static void Main(string[] args)
+        static void Main(string[] args)
         {
-            Mape mapa = new Mape("naziv",TipMape.Tip.ZIMSKA, 10,"npt", "nct",4); // Pretpostavimo da ima podrazumevani konstruktor
-            Prodavnica prodavnica = new Prodavnica();
-            List<Heroj> plaviTim = new List<Heroj>();
-            List<Heroj> crveniTim = new List<Heroj>();
+            // Mape mapa = new Mape("naziv",TipMape.Tip.ZIMSKA, 10,"npt", "nct",4); // Pretpostavimo da ima podrazumevani konstruktor
+            //Prodavnica prodavnica = new Prodavnica();
+            //List<Heroj> plaviTim = new List<Heroj>();
+            //List<Heroj> crveniTim = new List<Heroj>();
             // IHerojiRepozitorijum herojRep = null; // Trebaš konkretan objekat koji implementira ovaj interfejs
             // IPrikazStatistike prikaz; 
             // IPrikazStatistikeDatoteka prikazDa;
@@ -37,13 +38,38 @@ namespace Application
             //ispisMenia.PrikaziMeni();
 
 
+            //while (true)
+            //{
+                //string? tip_korisnika = null, korisnickoIme = "", lozinka = "";
+                //Korisnik? prijavljen;
+
+                // Servisi
+                //IServisAutentifikacije autentifikacijaServis = new AutentifikacioniServis();
+                //IZapisiServis servis;
+                //ILoggerServis logger = new FileLoggerServis();
+
+                //Console.WriteLine("\n============== PRIJAVA ==============");
 
 
-       
+
+
+
+                // while (autentifikacijaServis.Prijava(korisnickoIme.Trim(), lozinka.Trim()) )
+                //{
+                //Console.Write("Korisničko ime: ");
+                //korisnickoIme = Console.ReadLine() ?? "";
+
+                //Console.Write("Lozinka: ");
+                //lozinka = Console.ReadLine() ?? "";
+                //}
+                // }
 
 
 
 
+
+
+           // }
         }
     }
 }

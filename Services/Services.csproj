@@ -8,10 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="SimulacijaBitke\" />
+    <ProjectReference Include="..\Presentations\Presentations.csproj" />
   </ItemGroup>
 
 </Project>

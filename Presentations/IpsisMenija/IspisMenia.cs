@@ -21,27 +21,17 @@ namespace Presentations.IpsisMenija
     {
         Mape mapa;
         Prodavnica prodavnica;
-        //nasumicno generisanje mape 
-      
         private readonly NasumicnoGenerisanjeMape nasumicnoGenerisanjeMape;
-        
-        //nasumicno generisanje prodavnice
         private readonly NasumicnoGenerisanjeProdavnice nasumicnoGenerisanjeProdavnice;
         private readonly IProdavnicaRepozitorijum prodavnicaRepozitorijum;
-        //ImapaRepozitorijum 
         private readonly IMapaRepozitorijum mapaRepozitorijum;
-        //IprodavnicaRepozitorijum 
         public List<Heroj> PlaviTim = new List<Heroj>();
         public List<Heroj> CrveniTim = new List<Heroj>();
-        //nasumicno generisanje timova 
         private readonly IHerojiRepozitorijum herojRep;
         private readonly ITimoviServis timoviServis;
-        //Interfejs za pomocni entitet 
         IEntitetRepozitorijum pomocniEntitet;
-        //interfejs za borbu 
         private readonly IBorbaServis servis;
         //interfejs za tabelrani prikaz 
-        //lista predmeta 
         private List<Predmet> predmeti = new List<Predmet>();
         private readonly Presentations.MeniZaStatistiku.MeniZaStatistiku meniZaStatistiku;
 
@@ -108,7 +98,7 @@ namespace Presentations.IpsisMenija
                         List<Heroj> crveni = new List<Heroj>();
                         int q = 0;
                         Console.WriteLine("\nBitka pocinje!");
-                        (plavi,crveni,q) = servis.BorbaHeroja(PlaviTim, CrveniTim, pomocniEntitet.PregledPomocnihEntiteta().ToList(), predmeti);
+                        (plavi,crveni,q) = servis.BorbaHeroja(mapa,PlaviTim, CrveniTim, pomocniEntitet.PregledPomocnihEntiteta().ToList(), predmeti);
 
                         meniZaStatistiku.MeniStatistika(mapa, plavi, crveni, q);
 

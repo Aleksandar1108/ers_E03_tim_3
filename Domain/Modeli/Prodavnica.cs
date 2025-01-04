@@ -11,54 +11,36 @@ namespace Domain.Modeli
         
         public int IdProdavnice { get; set; } = 0;
 
-      //  public List<Predmet> ListaOiN { get; set; }
-        public List<Oruzje> Oruzja { get; set; } = new List<Oruzje>();
-
-        public List<Napitak> Napici { get; set; } = new List<Napitak>();
+        public List<Predmet> ListaOiN { get; set; } = new List<Predmet>();
+        
 
         public int UkupnaProdataVrednost { get; set; } = 0;
 
         public Prodavnica() { }
 
-        public Prodavnica(int idProd,List<Oruzje> or,List<Napitak> nap,int ukpVr)
+        public Prodavnica(int idProd,List<Predmet> predmeti,int ukpVr)
         {
             IdProdavnice = idProd;
-            Oruzja = or;
-            Napici = nap;
+            ListaOiN = predmeti;
+            UkupnaProdataVrednost = ukpVr;
             
         }
         public override string? ToString()
         {
             return "\nId Prodavnice: " + IdProdavnice+
-                   "\nLista oruzja: " + Oruzja +
-                   "\nLista napitaka: " +Napici+
+                   "\nLista predmeta: " + ListaOiN + 
                    "\nUkupna prodata vrednost: " + UkupnaProdataVrednost;
         }
         public List<Predmet> IspisiDostupneNapitkeIOruzja()
         {
-            List<Predmet> dostupniPredmeti = new List<Predmet>();
-            
-            foreach(Oruzje oruzje in Oruzja)
+            foreach (var predmet in ListaOiN)
             {
-                dostupniPredmeti.Add(new Predmet
-                {
-                    NazivPredmeta = oruzje.NazivOruzja,
-                    CenaKomada = oruzje.CenaKomada,
-                    PojacaniPoeniZaNapad = oruzje.PojacaniPoeniZaNapad
-                });
+                Console.WriteLine(predmet.ToString());
             }
 
-            foreach(Napitak napitak in Napici)
-            {
-                dostupniPredmeti.Add(new Predmet
-                {
-                    NazivPredmeta = napitak.NazivNapitka,
-                    CenaKomada = napitak.Cena,
-                    PojacaniPoeniZaNapad = napitak.PojacaniPoeniZaNapad
-                });
-            }
-            return dostupniPredmeti;
             
+            return ListaOiN;
+
         }
     }
 }

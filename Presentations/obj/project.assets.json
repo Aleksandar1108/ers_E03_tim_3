@@ -32,9 +32,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Windows 10\\Source\\Repos\\ers_E03_tim_3\\Presentations\\Presentations.csproj",
+      "projectUniqueName": "C:\\Users\\Windows 10\\source\\repos\\ers_E03_tim_3\\Presentations\\Presentations.csproj",
       "projectName": "Presentations",
-      "projectPath": "C:\\Users\\Windows 10\\Source\\Repos\\ers_E03_tim_3\\Presentations\\Presentations.csproj",
+      "projectPath": "C:\\Users\\Windows 10\\source\\repos\\ers_E03_tim_3\\Presentations\\Presentations.csproj",
       "packagesPath": "C:\\Users\\Windows 10\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\Windows 10\\Source\\Repos\\ers_E03_tim_3\\Presentations\\obj\\",
       "projectStyle": "PackageReference",
@@ -53,8 +53,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\Windows 10\\Source\\Repos\\ers_E03_tim_3\\Domain\\Domain.csproj": {
-              "projectPath": "C:\\Users\\Windows 10\\Source\\Repos\\ers_E03_tim_3\\Domain\\Domain.csproj"
+            "C:\\Users\\Windows 10\\source\\repos\\ers_E03_tim_3\\Domain\\Domain.csproj": {
+              "projectPath": "C:\\Users\\Windows 10\\source\\repos\\ers_E03_tim_3\\Domain\\Domain.csproj"
             }
           }
         }

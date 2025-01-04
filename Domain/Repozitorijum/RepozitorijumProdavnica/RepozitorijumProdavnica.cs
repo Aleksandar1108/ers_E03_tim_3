@@ -20,9 +20,9 @@ namespace Domain.Repozitorijum.RepozitorijumProdavnica
             PredmetRepozitorijum = new Domain.Repozitorijum.RepozitorijumPredmet.RepozitorijumPredmet();
             prodavnicaList = new List<Prodavnica>
             {
-                //new Prodavnica (1,PredmetRepozitorijum.PregledPredmeta().ToList(),0),
-                //new Prodavnica (2,PredmetRepozitorijum.PregledPredmeta().ToList(),0),
-                //new Prodavnica (3,PredmetRepozitorijum.PregledPredmeta().ToList(),0)
+                new Prodavnica (1,PredmetRepozitorijum.PregledPredmeta().ToList(),0),
+                new Prodavnica (2,PredmetRepozitorijum.PregledPredmeta().ToList(),0),
+                new Prodavnica (3,PredmetRepozitorijum.PregledPredmeta().ToList(),0)
             };
         }
 

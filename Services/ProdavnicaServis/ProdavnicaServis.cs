@@ -11,17 +11,17 @@ namespace Services.ProdavnicaServis
     public class ProdavnicaServis : IProdavnicaServis
     {
         public ProdavnicaServis() { }
-        public bool KupiNapitak(Heroj h, Prodavnica p, string naziv)
+        public bool KupiPredmet(Heroj h, Prodavnica prod, string naziv)
         {
-            foreach(Oruzje oruzje in p.Oruzja)
+            foreach(Predmet p in prod.ListaOiN)
             {
-                if(naziv == oruzje.NazivOruzja)
+                if(naziv == p.NazivPredmeta)
                 {
-                    if(h.StanjeNovcica >= oruzje.CenaKomada && oruzje.DostupnaKolicina > 0 )
+                    if(h.StanjeNovcica >= p.CenaKomada && p.DostupnaKolicina > 0 )
                     {
-                        h.StanjeNovcica -= oruzje.CenaKomada;
-                        oruzje.DostupnaKolicina--;
-                        h.JacinaNapada += oruzje.PojacaniPoeniZaNapad;
+                        h.StanjeNovcica -= p.CenaKomada;
+                        p.DostupnaKolicina--;
+                        h.JacinaNapada += p.PojacaniPoeniZaNapad;
                         return true;
 
                     }
@@ -30,28 +30,6 @@ namespace Services.ProdavnicaServis
                         return false;
                     }
                 }
-            }
-            return false;
-        }
-
-        public bool KupiOruzje(Heroj h, Prodavnica p, string naziv)
-        {
-            foreach(Napitak napitak in p.Napici)
-            {
-                if(naziv == napitak.NazivNapitka)
-                {
-                    if(h.StanjeNovcica >= napitak.CenaKomada && napitak.DostupnaKolicina >0)
-                    {
-                        h.StanjeNovcica -= napitak.CenaKomada;
-                        napitak.DostupnaKolicina--;
-                        h.JacinaNapada += napitak.Bppn;
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }    
             }
             return false;
         }

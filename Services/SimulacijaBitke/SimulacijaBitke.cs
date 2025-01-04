@@ -10,7 +10,8 @@ using Services.PrikazStatistikeUFajl;
 
 
 
-namespace Services.SimulacijaBitke
+
+namespace Services.ProdavnicaServis
 {
     public class SimulacijaBitke : IBorbaServis
     {
@@ -70,13 +71,73 @@ namespace Services.SimulacijaBitke
                 }
                 if(PlaviHeroj.StanjeNovcica >= 500)
                 {
-                    //kupi iz radnje ovde se poziva funkcija za kupovinu
+                    // Направите инстанцу продавнице
+                    Prodavnica prodavnica = new Prodavnica();
+
+                    // Филтрирајте доступне предмете (они са доступном количином > 0)
+                    List<Predmet> dostupniPredmeti = prodavnica.ListaOiN.Where(p => p.DostupnaKolicina > 0).ToList();
+
+                    if (dostupniPredmeti.Count > 0)
+                    {
+                        // Изаберите насумични предмет из доступних
+                        Random rand = new Random();
+                        Predmet predmetZaKupovinu = dostupniPredmeti[rand.Next(dostupniPredmeti.Count)];
+
+                        // Покрените куповину
+                        ProdavnicaServis prodavnicaServis = new ProdavnicaServis();
+                        bool uspehKupovine = prodavnicaServis.KupiPredmet(PlaviHeroj, prodavnica, predmetZaKupovinu.NazivPredmeta);
+
+                        // Испис резултата куповине
+                        if (uspehKupovine)
+                        {
+                            Console.WriteLine($"{PlaviHeroj.NazivHeroja} je uspesno kupio {predmetZaKupovinu.NazivPredmeta}!");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{PlaviHeroj.NazivHeroja} nije uspeo da kupi {predmetZaKupovinu.NazivPredmeta}.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nema dostupnih predmeta za kupovinu u prodavnici");
+                    }
+
                 } 
                 if(CrveniHeroj.StanjeNovcica >= 500)
                 {
-                    //opet kao gore pzova se funkcija za kupovinu
-                } 
-                if(crveniTim.Count == 0 )
+                    // Направите инстанцу продавнице
+                    Prodavnica prodavnica = new Prodavnica();
+
+                    // Филтрирајте доступне предмете (они са доступном количином > 0)
+                    List<Predmet> dostupniPredmeti = prodavnica.ListaOiN.Where(p => p.DostupnaKolicina > 0).ToList();
+
+                    if (dostupniPredmeti.Count > 0)
+                    {
+                        // Изаберите насумични предмет из доступних
+                        Random rand = new Random();
+                        Predmet predmetZaKupovinu = dostupniPredmeti[rand.Next(dostupniPredmeti.Count)];
+
+                        // Покрените куповину
+                        ProdavnicaServis prodavnicaServis = new ProdavnicaServis();
+                        bool uspehKupovine = prodavnicaServis.KupiPredmet(PlaviHeroj, prodavnica, predmetZaKupovinu.NazivPredmeta);
+
+                        // Испис резултата куповине
+                        if (uspehKupovine)
+                        {
+                            Console.WriteLine($"{CrveniHeroj.NazivHeroja} je uspesno kupio {predmetZaKupovinu.NazivPredmeta}!");
+                        }
+                        else
+                        {
+                            Console.WriteLine($"{CrveniHeroj.NazivHeroja} nije uspeo da kupi {predmetZaKupovinu.NazivPredmeta}.");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("Nema dostupnih predmeta za kupovinu u prodavnici");
+                    }
+                    
+                }
+                if (crveniTim.Count == 0 )
                 {
                     Console.WriteLine("\nBitka je gotova!");
                     Console.WriteLine("\nPobedio je plavi tim!");

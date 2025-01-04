@@ -36,9 +36,7 @@ namespace Domain.Modeli
             foreach (var predmet in ListaOiN)
             {
                 Console.WriteLine(predmet.ToString());
-            }
-
-            
+            } 
             return ListaOiN;
 
         }

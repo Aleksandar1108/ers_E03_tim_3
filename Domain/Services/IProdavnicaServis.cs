@@ -9,8 +9,6 @@ namespace Domain.Services
 {
     public interface IProdavnicaServis
     {
-        public bool KupiOruzje(Heroj h, Prodavnica p, string naziv);
-
-        public bool KupiNapitak(Heroj h, Prodavnica p, string naziv);
+        public bool KupiPredmet(Heroj h, Prodavnica p, string naziv);
     }
 }

@@ -52,10 +52,6 @@ namespace Domain.Repozitorijum.RepozitorijumPredmet
 
         public List<Predmet>PregledPredmeta()
         {
-            foreach(Predmet pred in listaPredmeta)
-            {
-                Console.WriteLine(pred.ToString());
-            }
             return listaPredmeta;
         }
 

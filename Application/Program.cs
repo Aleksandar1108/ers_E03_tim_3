@@ -15,6 +15,12 @@ using Domain.Repozitorijum.IRepozitorijum.IEntitetRepozitorijum;
 using Domain.Repozitorijum.IRepozitorijum.IMapaRepozitorijum;
 using Domain.Repozitorijum.IRepozitorijum.IProdavnicaRepozitorijum;
 using Domain.Repozitorijum.AutentifikacioniServis;
+using Domain.Repozitorijum.RepozitorijumMapa;
+using Services.PrikazStatistikeKonzolno;
+using Services.PrikazStatistikeUFajl;
+using Domain.Repozitorijum.RepozitorijumProdavnica;
+using Domain.Repozitorijum.RepozitorijumEntitet;
+using Services.BitkaServisi;
 
 namespace Application
 {
@@ -68,7 +74,23 @@ namespace Application
 
             // Kada je prijava uspešna
             Console.WriteLine($"Korisnik '{prijavljen?.KorisnickoIme}' je uspešno prijavljen!");
-           
+
+            Mape mapa = new Mape();
+            Prodavnica prodavnica = new Prodavnica();
+            List<Heroj> plaviTim = new List<Heroj>();
+            List<Heroj> crveniTim = new List<Heroj>();
+            IPrikazStatistike prikazStatistikeKonzolono = new PrikazStatistikeKonzolno();
+            IPrikazStatistikeDatoteka prikazStatistikeDatoteke = new PrikazStatistikeDatoteke("statistika.txt");
+            IHerojiRepozitorijum herojRepozitorijum = new RepozitorijumHeroji();
+            MeniZaStatistiku meniZaStatistiku = new MeniZaStatistiku(prikazStatistikeKonzolono,prikazStatistikeDatoteke);
+            NasumicnoGenerisanjeMape nasumicnoGenMape = new NasumicnoGenerisanjeMape();
+            IMapaRepozitorijum mapaRep = new RepozitorijumMapa();
+            NasumicnoGenerisanjeProdavnice nasumicnoGenProd = new NasumicnoGenerisanjeProdavnice();
+            IProdavnicaRepozitorijum prodavnicaRep = new RepozitorijumProdavnica();
+            //ITimoviServis timoviServis = new
+            //IBorbaServis borbaServis =
+            IEntitetRepozitorijum pomocniEntitet = new RepozitorijumEntitet();
+            //IspisMenia ispis = new IspisMenia(mapa, prodavnica,plaviTim,crveniTim,herojRepozitorijum,meniZaStatistiku,nasumicnoGenMape,mapaRep,nasumicnoGenProd,prodavnicaRep,)
 
         }
 

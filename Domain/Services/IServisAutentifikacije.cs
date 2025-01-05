@@ -9,6 +9,6 @@ namespace Domain.Services
 {
     public interface IServisAutentifikacije
     {
-        public (bool, Korisnik) Prijava(string korisnickoIme, string lozinka);
+        public bool Prijava(string korisnickoIme, string lozinka, out Korisnik? prijavljen);
     }
 }

@@ -6,7 +6,7 @@ using Domain.Modeli;
 using Domain.Repozitorijum;
 using Domain.Repozitorijum.RepozitorijumOruzje;
 using Domain.Repozitorijum.RepozitorijumNapitci;
-using Presentations.AutentifikacijaPrezentacije;
+//using Presentations.AutentifikacijaPrezentacije;
 using Domain.Services;
 using Presentations.IpsisMenija;
 using Presentations.MeniZaStatistiku;
@@ -38,38 +38,40 @@ namespace Application
             //ispisMenia.PrikaziMeni();
 
 
-            //while (true)
-            //{
-                //string? tip_korisnika = null, korisnickoIme = "", lozinka = "";
-                //Korisnik? prijavljen;
+                string?  korisnickoIme = "", lozinka = "";
+                Korisnik? prijavljen;
 
                 // Servisi
-                //IServisAutentifikacije autentifikacijaServis = new AutentifikacioniServis();
+                IServisAutentifikacije autentifikacijaServis = new AutentifikacioniServis();
                 //IZapisiServis servis;
                 //ILoggerServis logger = new FileLoggerServis();
 
-                //Console.WriteLine("\n============== PRIJAVA ==============");
+                Console.WriteLine("\n============== PRIJAVA ==============");
 
 
 
+                AutentifikacioniServis autentifikacioniServis = new AutentifikacioniServis();
 
+            while (!autentifikacijaServis.Prijava(korisnickoIme.Trim(), lozinka.Trim(), out prijavljen))
+            {
+                if (!string.IsNullOrWhiteSpace(korisnickoIme) && !string.IsNullOrWhiteSpace(lozinka))
+                {
+                    Console.WriteLine("Prijava nije uspela. Proverite korisničko ime i lozinku.");
+                }
 
-                // while (autentifikacijaServis.Prijava(korisnickoIme.Trim(), lozinka.Trim()) )
-                //{
-                //Console.Write("Korisničko ime: ");
-                //korisnickoIme = Console.ReadLine() ?? "";
+                Console.Write("Korisničko ime: ");
+                korisnickoIme = Console.ReadLine() ?? "";
 
-                //Console.Write("Lozinka: ");
-                //lozinka = Console.ReadLine() ?? "";
-                //}
-                // }
+                Console.Write("Lozinka: ");
+                lozinka = Console.ReadLine() ?? "";
+            }
 
+            // Kada je prijava uspešna
+            Console.WriteLine($"Korisnik '{prijavljen?.KorisnickoIme}' je uspešno prijavljen!");
+           
 
-
-
-
-
-           // }
         }
+
     }
+    
 }

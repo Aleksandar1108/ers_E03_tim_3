@@ -16,3 +16,19 @@ C:\Users\David\source\repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\Present
 C:\Users\David\source\repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\refint\Presentations.dll
 C:\Users\David\source\repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\Presentations.pdb
 C:\Users\David\source\repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\ref\Presentations.dll
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\bin\Debug\net8.0\Presentations.deps.json
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\bin\Debug\net8.0\Presentations.dll
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\bin\Debug\net8.0\Presentations.pdb
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\bin\Debug\net8.0\Domain.dll
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\bin\Debug\net8.0\Domain.pdb
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\Presentations.csproj.AssemblyReference.cache
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\Presentations.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\Presentations.AssemblyInfoInputs.cache
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\Presentations.AssemblyInfo.cs
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\Presentations.csproj.CoreCompileInputs.cache
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\Presentations.sourcelink.json
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\Presenta.689E83A8.Up2Date
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\Presentations.dll
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\refint\Presentations.dll
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\Presentations.pdb
+C:\Users\Windows 10\Source\Repos\ers_E03_tim_3\Presentations\obj\Debug\net8.0\ref\Presentations.dll

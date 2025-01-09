@@ -85,7 +85,8 @@ namespace Application
             IHerojiRepozitorijum herojRepozitorijum = new RepozitorijumHeroji();
             MeniZaStatistiku meniZaStatistiku = new MeniZaStatistiku(prikazStatistikeKonzolono,prikazStatistikeDatoteke);
             NasumicnoGenerisanjeMape nasumicnoGenMape = new NasumicnoGenerisanjeMape();
-            IMapaRepozitorijum mapaRep = new RepozitorijumMapa();
+            //IMapaRepozitorijum mapaRep = new RepozitorijumMapa();
+            RepozitorijumMapa mapaRep = new RepozitorijumMapa();
             NasumicnoGenerisanjeProdavnice nasumicnoGenProd = new NasumicnoGenerisanjeProdavnice();
             IProdavnicaRepozitorijum prodavnicaRep = new RepozitorijumProdavnica();
             ITimoviServis timoviServis = new TimoviServis();

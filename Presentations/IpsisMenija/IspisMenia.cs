@@ -5,6 +5,7 @@ using Domain.Repozitorijum.IRepozitorijum.IHerojRepozitorijum;
 using Domain.Repozitorijum.IRepozitorijum.IMapaRepozitorijum;
 using Domain.Repozitorijum.IRepozitorijum.IProdavnicaRepozitorijum;
 using Domain.Repozitorijum.RepozitorijumHeroji;
+using Domain.Repozitorijum.RepozitorijumMapa;
 using Domain.Repozitorijum.RepozitorijumProdavnica;
 using Domain.Services;
 using System;
@@ -14,7 +15,7 @@ using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
-
+using Domain.Enumeracija;
 namespace Presentations.IpsisMenija
 {
     public class IspisMenia
@@ -24,7 +25,8 @@ namespace Presentations.IpsisMenija
         private readonly NasumicnoGenerisanjeMape nasumicnoGenerisanjeMape;
         private readonly NasumicnoGenerisanjeProdavnice nasumicnoGenerisanjeProdavnice;
         private readonly IProdavnicaRepozitorijum prodavnicaRepozitorijum;
-        private readonly IMapaRepozitorijum mapaRepozitorijum;
+        private readonly RepozitorijumMapa mapaRepozitorijum;
+        
         public List<Heroj> PlaviTim = new List<Heroj>();
         public List<Heroj> CrveniTim = new List<Heroj>();
         private readonly IHerojiRepozitorijum herojRep;
@@ -35,7 +37,7 @@ namespace Presentations.IpsisMenija
         private List<Predmet> predmeti = new List<Predmet>();
         private readonly Presentations.MeniZaStatistiku.MeniZaStatistiku meniZaStatistiku;
 
-        public IspisMenia(Mape mapa, Prodavnica prodavnica, List<Heroj> plaviTim, List<Heroj> crveniTim, IHerojiRepozitorijum herojRep, MeniZaStatistiku.MeniZaStatistiku meniZaStatistiku, NasumicnoGenerisanjeMape nasumicnoGenerisanjeMape, IMapaRepozitorijum mapaRepozitorijum,NasumicnoGenerisanjeProdavnice nasumicnoGenerisanjeProdavnice,IProdavnicaRepozitorijum prodavnicaRepozitorijum,ITimoviServis timoviServis,IBorbaServis servis,IEntitetRepozitorijum pomocniEntitet)
+        public IspisMenia(Mape mapa, Prodavnica prodavnica, List<Heroj> plaviTim, List<Heroj> crveniTim, IHerojiRepozitorijum herojRep, MeniZaStatistiku.MeniZaStatistiku meniZaStatistiku, NasumicnoGenerisanjeMape nasumicnoGenerisanjeMape, RepozitorijumMapa mapaRepozitorijum,NasumicnoGenerisanjeProdavnice nasumicnoGenerisanjeProdavnice,IProdavnicaRepozitorijum prodavnicaRepozitorijum,ITimoviServis timoviServis,IBorbaServis servis,IEntitetRepozitorijum pomocniEntitet)
         { 
             //ovde nam fale za nasumicno generisanje
             //to cemo dodati kad uradimo generisanje bitke, timova...
@@ -87,7 +89,20 @@ namespace Presentations.IpsisMenija
                         }
                         break;
                     case '2':
-                        mapa = NasumicnoGenerisanjeMape.GenerisiNasumicnuMapu(mapaRepozitorijum.PregledMapa().ToList());
+                        Console.WriteLine("\nUnesite tip mape (1 za LETNJA, 2 za ZIMSKA):");
+                        string? izbor = Console.ReadLine();
+                        if(izbor == "1")
+                        {
+                            mapaRepozitorijum.DodajMapu(TipMape.Tip.LETNJA);
+                        }
+                        else if(izbor == "2")
+                        {
+                            mapaRepozitorijum.DodajMapu(TipMape.Tip.ZIMSKA);
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nepoznat unos!");
+                        }
                         prodavnica = NasumicnoGenerisanjeProdavnice.GenerisiProdavnicu(prodavnicaRepozitorijum.PregledProdavnice().ToList());
                         predmeti = prodavnica.IspisiDostupneNapitkeIOruzja();
                         (PlaviTim, CrveniTim) = timoviServis.KreirajTimove(maxBrojIgraca, herojRep.pregledHeroja().ToList());

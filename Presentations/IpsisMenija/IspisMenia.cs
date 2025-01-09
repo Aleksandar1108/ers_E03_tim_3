@@ -112,6 +112,11 @@ namespace Presentations.IpsisMenija
                         List<Heroj> plavi = new List<Heroj>();
                         List<Heroj> crveni = new List<Heroj>();
                         int q = 0;
+                        if (PlaviTim.Count == 0 || CrveniTim.Count == 0)
+                        {
+                            Console.WriteLine("\nTimovi nisu pravilno inicijalizovani! Prvo odaberite broj igrača i generišite timove.");
+                            break;
+                        }
                         Console.WriteLine("\nBitka pocinje!");
                         (plavi,crveni,q) = servis.BorbaHeroja(mapa,PlaviTim, CrveniTim, pomocniEntitet.PregledPomocnihEntiteta().ToList(), predmeti);
 

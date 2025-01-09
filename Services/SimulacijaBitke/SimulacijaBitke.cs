@@ -19,7 +19,7 @@ namespace Services.ProdavnicaServis
         {
             Random random = new Random();
             int TrajanjeBitke = random.Next(10,46);
-
+            Prodavnica prodavnica = new Prodavnica();
             Console.WriteLine($"\nBitka pocinje! Trajanje bitke: {TrajanjeBitke} sekundi");
 
             for(int i = 0; i< TrajanjeBitke; i++)
@@ -45,7 +45,7 @@ namespace Services.ProdavnicaServis
                     crveniTim.Remove(CrveniHeroj);
                 }
 
-                if (CrveniHeroj.BrZivotnihPoena < 0)
+                if (PlaviHeroj.BrZivotnihPoena < 0)
                 {
                     Console.WriteLine($"\n{PlaviHeroj.NazivHeroja} je porazen! {CrveniHeroj.NazivHeroja} je osvojio 300 zlatnih novcica");
                     CrveniHeroj.StanjeNovcica += 300;
@@ -72,7 +72,7 @@ namespace Services.ProdavnicaServis
                 if(PlaviHeroj.StanjeNovcica >= 500)
                 {
                     // Направите инстанцу продавнице
-                    Prodavnica prodavnica = new Prodavnica();
+                    
 
                     // Филтрирајте доступне предмете (они са доступном количином > 0)
                     List<Predmet> dostupniPredmeti = prodavnica.ListaOiN.Where(p => p.DostupnaKolicina > 0).ToList();
@@ -106,7 +106,7 @@ namespace Services.ProdavnicaServis
                 if(CrveniHeroj.StanjeNovcica >= 500)
                 {
                     // Направите инстанцу продавнице
-                    Prodavnica prodavnica = new Prodavnica();
+                    
 
                     // Филтрирајте доступне предмете (они са доступном количином > 0)
                     List<Predmet> dostupniPredmeti = prodavnica.ListaOiN.Where(p => p.DostupnaKolicina > 0).ToList();
@@ -137,22 +137,18 @@ namespace Services.ProdavnicaServis
                     }
                     
                 }
-                if (crveniTim.Count == 0 )
+                if (crveniTim.Count == 0 || plaviTim.Count == 0)
                 {
                     Console.WriteLine("\nBitka je gotova!");
-                    Console.WriteLine("\nPobedio je plavi tim!");
-                    Console.WriteLine($"\n crveni {crveniTim.Count} plavi {plaviTim.Count}");
+                    if (crveniTim.Count == 0)
+                        Console.WriteLine("\nPobedio je plavi tim!");
+                    else
+                        Console.WriteLine("\nPobedio je crveni tim!");
 
-                }
-                if(plaviTim.Count == 0 )
-                {
-                    Console.WriteLine("\nBitka je gotova!");
-                    Console.WriteLine("\nPobedio je crveni tim!");
-                    Console.WriteLine($"\n crveni {crveniTim.Count} plavi {plaviTim.Count}");
+                    break; // Prekid simulacije čim jedan tim izgubi sve članove
                 }
 
-            } 
-            Console.WriteLine("\nBitka je gotova");
+            }
             
 
             return (plaviTim, crveniTim, TrajanjeBitke);

@@ -25,7 +25,7 @@ namespace Services.PrikazStatistikeKonzolno
             {
                 Console.WriteLine(h);
             }
-            Console.WriteLine($"\nUkupna vrednost prodatih stvari iz prodavnice");
+            Console.WriteLine($"\nUkupna vrednost prodatih stvari iz prodavnice: ",ukupnaProdaja);
         }
     }
 }

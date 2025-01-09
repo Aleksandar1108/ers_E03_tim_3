@@ -25,11 +25,10 @@ namespace Domain.Modeli
             UkupnaProdataVrednost = ukpVr;
             
         }
-        public override string? ToString()
+        public override string ToString()
         {
-            return "\nId Prodavnice: " + IdProdavnice+
-                   "\nLista predmeta: " + ListaOiN + 
-                   "\nUkupna prodata vrednost: " + UkupnaProdataVrednost;
+            var predmetInfo = string.Join("\n", ListaOiN.Select(p => p.ToString()));
+            return $"\nId Prodavnice: {IdProdavnice}\nLista predmeta: {predmetInfo}\nUkupna prodata vrednost: {UkupnaProdataVrednost}";
         }
         public List<Predmet> IspisiDostupneNapitkeIOruzja()
         {

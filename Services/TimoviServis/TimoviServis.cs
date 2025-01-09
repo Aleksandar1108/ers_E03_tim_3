@@ -14,6 +14,7 @@ namespace Services.TimoviServis
         {
             if (heroji== null || heroji.Count < maxBrojIgraca * 2)
             {
+                Console.WriteLine($"Trenutno imate {heroji.Count} heroja, a potrebno je {maxBrojIgraca * 2} heroja za oba tima.");
                 throw new ArgumentException("Nedovoljno heroja za kreiranje timova.");
             }
 

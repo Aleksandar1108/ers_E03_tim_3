@@ -14,72 +14,115 @@ namespace Services.BitkaServisi
             Random random = new Random();
             int brojPobedaPlavi = 0;
             int brojPobedaCrveni = 0;
+            PomocniEntitet pomocniEntitet = pomocniEntiteti[random.Next(pomocniEntiteti.Count)];
 
-            // Симулација битке
-            int trajanjeBitke = random.Next(10, 45); // Трајање битке у секундама
-            Console.WriteLine($"Битка траје {trajanjeBitke} секунди на мапи: {mapa.NazivMape}");
+            int trajanjeBitke = random.Next(10, 45);
+            Console.WriteLine($"Bitka traje {trajanjeBitke} sekundi na mapi: {mapa.NazivMape}");
 
             for (int i = 0; i < trajanjeBitke; i++)
             {
-                // Одабирање насумичног нападача и жртве у тиму
-                if (plaviTim.Count > 0 && crveniTim.Count > 0)
+                Console.WriteLine($"\nRunda {i + 1}:");
+
+                // Provera da li timovi imaju heroje
+                if (plaviTim.Count == 0 || crveniTim.Count == 0)
                 {
+                    Console.WriteLine("Jedan od timova je ostao bez heroja!");
+                    break;
+                }
+
+                // Nasumično biraj tim koji napada prvi
+                bool plaviNapadaPrvi = random.Next(2) == 0;
+
+                if (plaviNapadaPrvi)
+                {
+                    // Plavi tim napada
                     Heroj napadacPlavi = plaviTim[random.Next(plaviTim.Count)];
                     Heroj zrtvaCrveni = crveniTim[random.Next(crveniTim.Count)];
                     NapadniHeroja(napadacPlavi, zrtvaCrveni);
+                    NapadniPomocniEntitet(napadacPlavi, pomocniEntitet);
+                    PrikaziNapad(napadacPlavi, zrtvaCrveni);
+
                     if (zrtvaCrveni.BrZivotnihPoena == 0)
                     {
                         crveniTim.Remove(zrtvaCrveni);
                         brojPobedaPlavi++;
                     }
-
-                    if (plaviTim.Count == 0 || crveniTim.Count == 0) break;
-
+                }
+                else
+                {
+                    // Crveni tim napada
                     Heroj napadacCrveni = crveniTim[random.Next(crveniTim.Count)];
                     Heroj zrtvaPlavi = plaviTim[random.Next(plaviTim.Count)];
                     NapadniHeroja(napadacCrveni, zrtvaPlavi);
+                    NapadniPomocniEntitet(napadacCrveni, pomocniEntitet);
+                    PrikaziNapad(napadacCrveni, zrtvaPlavi);
+
                     if (zrtvaPlavi.BrZivotnihPoena == 0)
                     {
                         plaviTim.Remove(zrtvaPlavi);
                         brojPobedaCrveni++;
                     }
                 }
+            }
 
-                // Напад на помоћне ентитете
-                foreach (var heroj in plaviTim.Concat(crveniTim))
+            // Pozivamo funkciju za kupovinu predmeta nakon bitke
+            KupovinaPredmeta(plaviTim, predmeti);
+            KupovinaPredmeta(crveniTim, predmeti);
+
+            Console.WriteLine("\nBitka je završena!");
+            if (brojPobedaPlavi > brojPobedaCrveni)
+            {
+                Console.WriteLine("Plavi tim je pobedio!");
+            }
+            else if (brojPobedaCrveni > brojPobedaPlavi)
+            {
+                Console.WriteLine("Crveni tim je pobedio!");
+            }
+            else
+            {
+                Console.WriteLine("Bitka je završena nerešeno!");
+            }
+            return (plaviTim, crveniTim, brojPobedaPlavi > brojPobedaCrveni ? 1 : brojPobedaCrveni > brojPobedaPlavi ? 2 : 0);
+
+        }
+        private void KupovinaPredmeta(List<Heroj> tim, List<Predmet> predmeti)
+        {
+            Random random = new Random();
+            foreach (var heroj in tim)
+            {
+                if (heroj.StanjeNovcica >= 500)
                 {
-                    if (pomocniEntiteti.Count > 0)
+                    // Random odabir predmeta
+                    var dostupniPredmeti = predmeti.Where(p => p.DostupnaKolicina > 0).ToList();
+                    if (dostupniPredmeti.Count > 0)
                     {
-                        PomocniEntitet entitet = pomocniEntiteti[random.Next(pomocniEntiteti.Count)];
-                        NapadniPomocniEntitet(heroj, entitet);
-                        if (entitet.ZivotniPoeni == 0)
-                        {
-                            pomocniEntiteti.Remove(entitet);
-                        }
-                    }
+                        var predmetZaKupovinu = dostupniPredmeti[random.Next(dostupniPredmeti.Count)];
 
-                    // Провера да ли херој може да купи предмет
-                    if (heroj.StanjeNovcica >= 500)
-                    {
-                        Predmet predmet = predmeti.FirstOrDefault(p => p.DostupnaKolicina > 0) ?? new Predmet
-                        {
-                            NazivPredmeta = "Default",
-                            CenaKomada = 0,
-                            PojacaniPoeniZaNapad = 0,
-                            DostupnaKolicina = 0
-                        };
-                        if (predmet != null)
-                        {
-                            heroj.JacinaNapada += predmet.PojacaniPoeniZaNapad;
-                            heroj.StanjeNovcica -= predmet.CenaKomada;
-                            predmet.DostupnaKolicina--;
-                        }
+                        // Kupovina predmeta
+                        heroj.JacinaNapada += predmetZaKupovinu.PojacaniPoeniZaNapad;
+                        heroj.StanjeNovcica -= predmetZaKupovinu.CenaKomada;
+                        predmetZaKupovinu.DostupnaKolicina--;
+
+                        Console.WriteLine($"{heroj.NazivHeroja} je kupio {predmetZaKupovinu.NazivPredmeta} i povećao napad na {heroj.JacinaNapada}.");
                     }
                 }
             }
+        }
 
-            // Резултат битке
-            return (plaviTim, crveniTim, brojPobedaPlavi > brojPobedaCrveni ? 1 : brojPobedaCrveni > brojPobedaPlavi ? 2 : 0);
+        private void PrikaziNapad(Heroj napadac, Heroj zrtva)
+        {
+            Console.WriteLine($"{napadac.NazivHeroja} napada {zrtva.NazivHeroja}. Život žrtve: {zrtva.BrZivotnihPoena}");
+
+            if (zrtva.BrZivotnihPoena == 0)
+            {
+                Console.WriteLine($"{zrtva.NazivHeroja} je eliminisan!");
+                // Logika eliminacije žrtve
+            }
+            else
+            {
+                // Ispis nakon napada, kad žrtva još ima život
+                Console.WriteLine($"{napadac.NazivHeroja} je napao {zrtva.NazivHeroja}. Preostali život žrtve: {zrtva.BrZivotnihPoena}");
+            }
         }
 
         private void NapadniHeroja(Heroj napadac, Heroj zrtva)

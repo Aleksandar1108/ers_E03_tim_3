@@ -109,18 +109,148 @@ namespace Presentations.IpsisMenija
                         Console.WriteLine("\nPodaci su uspesno izgenerisani");
                         break;
                     case '3':
-                        List<Heroj> plavi = new List<Heroj>();
-                        List<Heroj> crveni = new List<Heroj>();
-                        int q = 0;
-                        if (PlaviTim.Count == 0 || CrveniTim.Count == 0)
-                        {
-                            Console.WriteLine("\nTimovi nisu pravilno inicijalizovani! Prvo odaberite broj igrača i generišite timove.");
-                            break;
-                        }
-                        Console.WriteLine("\nBitka pocinje!");
-                        (plavi,crveni,q) = servis.BorbaHeroja(mapa,PlaviTim, CrveniTim, pomocniEntitet.PregledPomocnihEntiteta().ToList(), predmeti);
+                        Console.WriteLine("\nPokreće se simulacija bitke!\n");
 
-                        meniZaStatistiku.MeniStatistika(mapa, plavi, crveni, q);
+                        // Unos broja igrača po timu ako nije ranije definisan
+                        if (maxBrojIgraca == 0)
+                        {
+                            Console.WriteLine("Unesite maksimalan broj igrača po timu: ");
+                            if (int.TryParse(Console.ReadLine(), out maxBrojIgraca) && maxBrojIgraca > 0)
+                            {
+                                Console.WriteLine($"Broj igrača po timu je postavljen na {maxBrojIgraca}.");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Neispravan unos broja igrača. Pokušajte ponovo.");
+                                break;
+                            }
+                        }
+
+                        // Unos naziva timova
+                        Console.WriteLine("Unesite naziv za Plavi tim:");
+                        string? nazivPlavogTima = Console.ReadLine();
+                        if (string.IsNullOrWhiteSpace(nazivPlavogTima))
+                        {
+                            nazivPlavogTima = "Plavi Tim"; // Podrazumevani naziv
+                        }
+
+                        Console.WriteLine("Unesite naziv za Crveni tim:");
+                        string? nazivCrvenogTima = Console.ReadLine();
+                        if (string.IsNullOrWhiteSpace(nazivCrvenogTima))
+                        {
+                            nazivCrvenogTima = "Crveni Tim"; // Podrazumevani naziv
+                        }
+
+                        // Unos naziva igrača za plavi tim
+                        PlaviTim.Clear();
+                        Console.WriteLine($"Unos naziva igrača za {nazivPlavogTima}:");
+                        for (int i = 0; i < maxBrojIgraca; i++)
+                        {
+                            Console.WriteLine($"Unesite naziv za igrača {i + 1}: ");
+                            string? nazivIgraca = Console.ReadLine();
+                            if (!string.IsNullOrWhiteSpace(nazivIgraca))
+                            {
+                                Console.WriteLine("Unesite broj životnih poena za igrača:");
+                                int brZivotnihPoena = int.Parse(Console.ReadLine() ?? "100"); // Podrazumevano 100 ako nije uneseno
+
+                                Console.WriteLine("Unesite jačinu napada za igrača:");
+                                int jacinaNapada = int.Parse(Console.ReadLine() ?? "10"); // Podrazumevano 10 ako nije uneseno
+
+                                // Dodajemo igrača u plavi tim
+                                PlaviTim.Add(new Heroj { NazivHeroja = nazivIgraca, BrZivotnihPoena = brZivotnihPoena, JacinaNapada = jacinaNapada, StanjeNovcica = 0 });
+                            }
+                            else
+                            {
+                                Console.WriteLine("Neispravan unos naziva. Pokušajte ponovo.");
+                                i--;
+                            }
+                        }
+
+                        // Unos naziva igrača za crveni tim
+                        CrveniTim.Clear();
+                        Console.WriteLine($"Unos naziva igrača za {nazivCrvenogTima}:");
+                        for (int i = 0; i < maxBrojIgraca; i++)
+                        {
+                            Console.WriteLine($"Unesite naziv za igrača {i + 1}: ");
+                            string? nazivIgraca = Console.ReadLine();
+                            if (!string.IsNullOrWhiteSpace(nazivIgraca))
+                            {
+                                Console.WriteLine("Unesite broj životnih poena za igrača:");
+                                int brZivotnihPoena = int.Parse(Console.ReadLine() ?? "100"); // Podrazumevano 100 ako nije uneseno
+
+                                Console.WriteLine("Unesite jačinu napada za igrača:");
+                                int jacinaNapada = int.Parse(Console.ReadLine() ?? "10"); // Podrazumevano 10 ako nije uneseno
+
+                                CrveniTim.Add(new Heroj { NazivHeroja = nazivIgraca, BrZivotnihPoena = brZivotnihPoena, JacinaNapada = jacinaNapada, StanjeNovcica = 0 });
+                            }
+                            else
+                            {
+                                Console.WriteLine("Neispravan unos naziva. Pokušajte ponovo.");
+                                i--;
+                            }
+                        }
+
+                        // Unos mape
+                        Console.WriteLine("Unesite tip mape za bitku (1 za LETNJA, 2 za ZIMSKA):");
+                        string? izborMape = Console.ReadLine();
+                        if (izborMape == "1")
+                        {
+                            mapa = new Mape { NazivMape = "Letnja" };
+                        }
+                        else if (izborMape == "2")
+                        {
+                            mapa = new Mape { NazivMape = "Zimska" };
+                        }
+                        else
+                        {
+                            Console.WriteLine("Nepoznat unos tipa mape. Podrazumevano je postavljena Letnja mapa.");
+                            mapa = new Mape { NazivMape = "Letnja" };
+                        }
+
+                        // Odabir prodavnice
+                        Console.WriteLine("Odaberite prodavnicu za kupovinu:");
+                        var prodavnice = prodavnicaRepozitorijum.PregledProdavnice().ToList();
+                        for (int i = 0; i < prodavnice.Count; i++)
+                        {
+                            Console.WriteLine($"{i + 1}. Prodavnica ID: {prodavnice[i].IdProdavnice}");
+                        }
+                        int izborProdavnice;
+                        if (int.TryParse(Console.ReadLine(), out izborProdavnice) && izborProdavnice > 0 && izborProdavnice <= prodavnice.Count)
+                        {
+                            prodavnica = NasumicnoGenerisanjeProdavnice.GenerisiProdavnicu(new List<Domain.Modeli.Prodavnica> { prodavnice[izborProdavnice - 1] });
+                        }
+                        else
+                        {
+                            Console.WriteLine("Neispravan izbor prodavnice. Koristi se podrazumevana prodavnica.");
+                            prodavnica = NasumicnoGenerisanjeProdavnice.GenerisiProdavnicu(new List<Domain.Modeli.Prodavnica> { prodavnice[0] });
+                        }
+
+                        predmeti = prodavnica.IspisiDostupneNapitkeIOruzja();
+
+                        // Pokretanje bitke
+                        Console.WriteLine("\nSimulacija bitke je u toku...");
+                        List<Heroj> plaviPosleBitke = new List<Heroj>();
+                        List<Heroj> crveniPosleBitke = new List<Heroj>();
+                        int rezultatBitke = 0;
+
+                        (plaviPosleBitke, crveniPosleBitke, rezultatBitke) = servis.BorbaHeroja(mapa, PlaviTim, CrveniTim, pomocniEntitet.PregledPomocnihEntiteta().ToList(), predmeti);
+
+                        foreach (var heroj in plaviPosleBitke.Concat(crveniPosleBitke))
+                        {
+                            if (heroj.StanjeNovcica >= 500)
+                            {
+                                var predmetZaKupovinu = predmeti.FirstOrDefault();
+                                if (predmetZaKupovinu != null)
+                                {
+                                    heroj.JacinaNapada += predmetZaKupovinu.PojacaniPoeniZaNapad;
+                                    heroj.StanjeNovcica -= predmetZaKupovinu.CenaKomada;
+                                    Console.WriteLine($"{heroj.NazivHeroja} je kupio {predmetZaKupovinu.NazivPredmeta} i povećao napad na {heroj.JacinaNapada}.");
+                                }
+                            }
+                        }
+
+                        // Prikaz rezultata kroz meni za statistiku
+                        meniZaStatistiku.MeniStatistika(mapa, plaviPosleBitke, crveniPosleBitke, rezultatBitke);
 
                         break;
                     default:

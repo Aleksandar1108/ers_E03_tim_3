@@ -17,9 +17,9 @@ namespace Services.StatistikaServis
             this.prikaz = prikaz;
         }
 
-        public void PrikaziStatistiku(Mape mapa, List<Heroj> plaviTim, List<Heroj> crveniTim,decimal ukupnaProdaja)
+        public void PrikaziStatistiku(Mape mapa, List<Heroj> plaviTim, List<Heroj> crveniTim,decimal ukupnaProdaja, string nazivPlavogTima, string nazivCrvenogTima)
         {
-            prikaz.Prikazi(mapa,plaviTim,crveniTim,ukupnaProdaja);
+            prikaz.Prikazi(mapa,plaviTim,crveniTim,ukupnaProdaja, nazivPlavogTima, nazivCrvenogTima);
         }
     }
 }

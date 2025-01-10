@@ -32,7 +32,7 @@ namespace Domain.Modeli
 
         public override string? ToString()
         {
-            return "\nNaziv mape: " + NazivMape + 
+            return  
                    "\nTip mape: " + TipMape + 
                    "\nMaksimalan broj igraca: " + MaxBrojIgraca + 
                    "\nNaziv plavog tima: " + NazivPlavogTima + 

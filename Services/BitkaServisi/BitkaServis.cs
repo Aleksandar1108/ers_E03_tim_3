@@ -18,7 +18,9 @@ namespace Services.BitkaServisi
 
             int trajanjeBitke = random.Next(10, 45);
             Console.WriteLine($"Bitka traje {trajanjeBitke} sekundi na mapi: {mapa.NazivMape}");
-
+           
+            decimal ukupnaVrednostProdatihPredmeta = 0;
+            
             for (int i = 0; i < trajanjeBitke; i++)
             {
                 Console.WriteLine($"\nRunda {i + 1}:");
@@ -42,6 +44,7 @@ namespace Services.BitkaServisi
                     NapadniPomocniEntitet(napadacPlavi, pomocniEntitet);
                     PrikaziNapad(napadacPlavi, zrtvaCrveni);
 
+                    ukupnaVrednostProdatihPredmeta += KupovinaPredmeta(napadacPlavi, predmeti);
                     if (zrtvaCrveni.BrZivotnihPoena == 0)
                     {
                         crveniTim.Remove(zrtvaCrveni);
@@ -57,6 +60,7 @@ namespace Services.BitkaServisi
                     NapadniPomocniEntitet(napadacCrveni, pomocniEntitet);
                     PrikaziNapad(napadacCrveni, zrtvaPlavi);
 
+                    ukupnaVrednostProdatihPredmeta += KupovinaPredmeta(napadacCrveni, predmeti);
                     if (zrtvaPlavi.BrZivotnihPoena == 0)
                     {
                         plaviTim.Remove(zrtvaPlavi);
@@ -65,9 +69,8 @@ namespace Services.BitkaServisi
                 }
             }
 
-            // Pozivamo funkciju za kupovinu predmeta nakon bitke
-            KupovinaPredmeta(plaviTim, predmeti);
-            KupovinaPredmeta(crveniTim, predmeti);
+           
+          
 
             Console.WriteLine("\nBitka je završena!");
             if (brojPobedaPlavi > brojPobedaCrveni)
@@ -85,7 +88,7 @@ namespace Services.BitkaServisi
             return (plaviTim, crveniTim, brojPobedaPlavi > brojPobedaCrveni ? 1 : brojPobedaCrveni > brojPobedaPlavi ? 2 : 0);
 
         }
-        private void KupovinaPredmeta(List<Heroj> tim, List<Predmet> predmeti)
+        /*private void KupovinaPredmeta(List<Heroj> tim, List<Predmet> predmeti)
         {
             Random random = new Random();
             foreach (var heroj in tim)
@@ -102,12 +105,38 @@ namespace Services.BitkaServisi
                         heroj.JacinaNapada += predmetZaKupovinu.PojacaniPoeniZaNapad;
                         heroj.StanjeNovcica -= predmetZaKupovinu.CenaKomada;
                         predmetZaKupovinu.DostupnaKolicina--;
-
+                       int vrednostKupovine = predmetZaKupovinu.CenaKomada;
                         Console.WriteLine($"{heroj.NazivHeroja} je kupio {predmetZaKupovinu.NazivPredmeta} i povećao napad na {heroj.JacinaNapada}.");
                     }
                 }
             }
+        }*/
+        private decimal KupovinaPredmeta(Heroj heroj, List<Predmet> predmeti)
+        {
+            Random random = new Random();
+            decimal vrednostKupovine = 0;
+
+            if (heroj.StanjeNovcica >= 500)
+            {
+                // Random odabir predmeta
+                var dostupniPredmeti = predmeti.Where(p => p.DostupnaKolicina > 0).ToList();
+                if (dostupniPredmeti.Count > 0)
+                {
+                    var predmetZaKupovinu = dostupniPredmeti[random.Next(dostupniPredmeti.Count)];
+
+                    // Kupovina predmeta
+                    heroj.JacinaNapada += predmetZaKupovinu.PojacaniPoeniZaNapad;
+                    heroj.StanjeNovcica -= predmetZaKupovinu.CenaKomada;
+                    predmetZaKupovinu.DostupnaKolicina--;
+
+                    vrednostKupovine = predmetZaKupovinu.CenaKomada;  // Zbir cene kupljenih predmeta
+                    Console.WriteLine($"{heroj.NazivHeroja} je kupio {predmetZaKupovinu.NazivPredmeta} i povećao napad na {heroj.JacinaNapada}.");
+                }
+            }
+
+            return vrednostKupovine;
         }
+
 
         private void PrikaziNapad(Heroj napadac, Heroj zrtva)
         {

@@ -18,7 +18,7 @@ namespace Presentations.MeniZaStatistiku
             this.prikazStatistike = prikaziStatistiku;
             this.prikazDat = prikazDat;
         }
-        public void MeniStatistika(Mape mapa, List<Heroj> plavi, List<Heroj>crveni, int ukupno)
+        public void MeniStatistika(Mape mapa, List<Heroj> plavi, List<Heroj>crveni, int ukupno, string nazivPlavogTima, string nazivCrvenogTima)
         {
            
 
@@ -39,7 +39,7 @@ namespace Presentations.MeniZaStatistiku
                 {
                     case '1':
                         {
-                            prikazStatistike.Prikazi(mapa,plavi,crveni,ukupno);
+                            prikazStatistike.Prikazi(mapa,plavi,crveni,ukupno, nazivPlavogTima, nazivCrvenogTima);
                              break;   
                         }
                     case '2':

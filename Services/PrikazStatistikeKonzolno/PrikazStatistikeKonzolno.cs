@@ -11,21 +11,26 @@ namespace Services.PrikazStatistikeKonzolno
     public class PrikazStatistikeKonzolno : IPrikazStatistike
     {
         public PrikazStatistikeKonzolno() { }
-        public void Prikazi(Mape mapa, List<Heroj> plaviTim, List<Heroj> crveniTim, decimal ukupnaProdaja)
+        public void Prikazi(Mape mapa, List<Heroj> plaviTim, List<Heroj> crveniTim, decimal ukupnaProdaja, string nazivPlavogtima, string nazivCrvenogTima)
         {
-            Console.WriteLine($"Mapa: {mapa}");
-            Console.WriteLine($"\nPlavi tim: "); 
+            Console.WriteLine($"Mapa: {mapa.TipMape}");
+            Console.WriteLine($"\nNaziv plavog tima: {nazivPlavogtima}");
+            Console.WriteLine($"\nNaziv crvenog tima: {nazivCrvenogTima}"); 
 
-            foreach(Heroj h in plaviTim)
+            Console.WriteLine($"\nPlavi tim: ");
+
+            foreach (Heroj h in plaviTim)
             {
                 Console.WriteLine(h);
             }
+
             Console.WriteLine("\nCrveni tim: ");
-            foreach(Heroj h in crveniTim)
+            foreach (Heroj h in crveniTim)
             {
                 Console.WriteLine(h);
             }
-            Console.WriteLine($"\nUkupna vrednost prodatih stvari iz prodavnice: ",ukupnaProdaja);
+
+            Console.WriteLine($"\nUkupna vrednost prodatih stvari iz prodavnice: {ukupnaProdaja}");
         }
     }
 }

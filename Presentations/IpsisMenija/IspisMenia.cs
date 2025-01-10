@@ -229,28 +229,18 @@ namespace Presentations.IpsisMenija
 
                         // Pokretanje bitke
                         Console.WriteLine("\nSimulacija bitke je u toku...");
-                        List<Heroj> plaviPosleBitke = new List<Heroj>();
-                        List<Heroj> crveniPosleBitke = new List<Heroj>();
+                        // List<Heroj> plaviPosleBitke = new List<Heroj>();
+                        //List<Heroj> crveniPosleBitke = new List<Heroj>();
+                        List<Heroj> sviHerojiPlavi = new List<Heroj>(PlaviTim);  // Svi heroji iz plavog tima
+                        List<Heroj> sviHerojiCrveni = new List<Heroj>(CrveniTim);
                         int rezultatBitke = 0;
 
-                        (plaviPosleBitke, crveniPosleBitke, rezultatBitke) = servis.BorbaHeroja(mapa, PlaviTim, CrveniTim, pomocniEntitet.PregledPomocnihEntiteta().ToList(), predmeti);
+                        (PlaviTim, CrveniTim, rezultatBitke) = servis.BorbaHeroja(mapa, PlaviTim, CrveniTim, pomocniEntitet.PregledPomocnihEntiteta().ToList(), predmeti);
 
-                        foreach (var heroj in plaviPosleBitke.Concat(crveniPosleBitke))
-                        {
-                            if (heroj.StanjeNovcica >= 500)
-                            {
-                                var predmetZaKupovinu = predmeti.FirstOrDefault();
-                                if (predmetZaKupovinu != null)
-                                {
-                                    heroj.JacinaNapada += predmetZaKupovinu.PojacaniPoeniZaNapad;
-                                    heroj.StanjeNovcica -= predmetZaKupovinu.CenaKomada;
-                                    Console.WriteLine($"{heroj.NazivHeroja} je kupio {predmetZaKupovinu.NazivPredmeta} i povećao napad na {heroj.JacinaNapada}.");
-                                }
-                            }
-                        }
+                        
 
                         // Prikaz rezultata kroz meni za statistiku
-                        meniZaStatistiku.MeniStatistika(mapa, plaviPosleBitke, crveniPosleBitke, rezultatBitke);
+                        meniZaStatistiku.MeniStatistika(mapa, sviHerojiPlavi, sviHerojiCrveni, rezultatBitke, nazivPlavogTima,nazivCrvenogTima);
 
                         break;
                     default:

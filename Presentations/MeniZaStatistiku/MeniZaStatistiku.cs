@@ -22,18 +22,16 @@ namespace Presentations.MeniZaStatistiku
         {
            
 
-            bool kraj = false; 
+             
 
-            while (!kraj) 
-            { 
+            
                  Console.WriteLine("\nOdaberite nacin za ispisivanje statistike: ");
                  Console.WriteLine("\n1.Ispis statitistike na ekran");
                  Console.WriteLine("\n2.Ispis statististike u datoteku");
 
                 string? unos = Console.ReadLine();
 
-                if (string.IsNullOrWhiteSpace(unos))
-                    continue;
+                
 
                 switch(unos[0])
                 {
@@ -53,7 +51,7 @@ namespace Presentations.MeniZaStatistiku
                 }
 
 
-            }  
+              
 
         }
     }

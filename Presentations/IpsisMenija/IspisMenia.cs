@@ -66,6 +66,7 @@ namespace Presentations.IpsisMenija
                 Console.WriteLine("\n1.Odabir broja igraca");
                 Console.WriteLine("\n2.Nasumican unos podataka bitke");
                 Console.WriteLine("\n3.Simulacija bitke");
+                Console.WriteLine("\n4.Izlaz");
                 Console.WriteLine("\nVas odabir: ");
 
                 string? unos = Console.ReadLine();
@@ -269,7 +270,7 @@ namespace Presentations.IpsisMenija
 
                         break;
                     case '4':
-                        Console.WriteLine("\nIzlaz");
+                        kraj = true;
                         break;
                     default:
                         Console.WriteLine("\nNeispravan unos, pokusajte ponovo!\n");

@@ -268,6 +268,9 @@ namespace Presentations.IpsisMenija
                        
 
                         break;
+                    case '4':
+                        Console.WriteLine("\nIzlaz");
+                        break;
                     default:
                         Console.WriteLine("\nNeispravan unos, pokusajte ponovo!\n");
                         break;

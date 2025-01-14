@@ -38,7 +38,7 @@ namespace Services.BitkaServisi
                 bool plaviNapadaPrvi = random.Next(2) == 0;
 
                 // Nasumično biraj pomoćni entitet ako ih ima preživelih
-                PomocniEntitet pomocniEntitet = preostaliPomocniEntiteti.Count > 0 ? preostaliPomocniEntiteti[random.Next(preostaliPomocniEntiteti.Count)] : null;
+                PomocniEntitet? pomocniEntitet = preostaliPomocniEntiteti.Count > 0 ? preostaliPomocniEntiteti[random.Next(preostaliPomocniEntiteti.Count)] : null;
 
                 if (plaviNapadaPrvi)
                 {
@@ -105,29 +105,6 @@ namespace Services.BitkaServisi
             return (plaviTim, crveniTim, brojPobedaPlavi > brojPobedaCrveni ? 1 : brojPobedaCrveni > brojPobedaPlavi ? 2 : 0);
 
         }
-        /*private void KupovinaPredmeta(List<Heroj> tim, List<Predmet> predmeti)
-        {
-            Random random = new Random();
-            foreach (var heroj in tim)
-            {
-                if (heroj.StanjeNovcica >= 500)
-                {
-                    // Random odabir predmeta
-                    var dostupniPredmeti = predmeti.Where(p => p.DostupnaKolicina > 0).ToList();
-                    if (dostupniPredmeti.Count > 0)
-                    {
-                        var predmetZaKupovinu = dostupniPredmeti[random.Next(dostupniPredmeti.Count)];
-
-                        // Kupovina predmeta
-                        heroj.JacinaNapada += predmetZaKupovinu.PojacaniPoeniZaNapad;
-                        heroj.StanjeNovcica -= predmetZaKupovinu.CenaKomada;
-                        predmetZaKupovinu.DostupnaKolicina--;
-                       int vrednostKupovine = predmetZaKupovinu.CenaKomada;
-                        Console.WriteLine($"{heroj.NazivHeroja} je kupio {predmetZaKupovinu.NazivPredmeta} i povećao napad na {heroj.JacinaNapada}.");
-                    }
-                }
-            }
-        }*/
         private decimal KupovinaPredmeta(Heroj heroj, List<Predmet> predmeti)
         {
             Random random = new Random();
@@ -157,33 +134,31 @@ namespace Services.BitkaServisi
 
         private void PrikaziNapad(Heroj napadac, Heroj zrtva)
         {
-            Console.WriteLine($"{napadac.NazivHeroja} napada {zrtva.NazivHeroja}. Život žrtve: {zrtva.BrZivotnihPoena}");
-
+            Console.WriteLine($"{napadac.NazivHeroja} napada {zrtva.NazivHeroja}. Život žrtve pre napada: {zrtva.BrZivotnihPoena}");
+            NapadniHeroja(napadac, zrtva); 
+            Console.WriteLine($"{napadac.NazivHeroja} je napao {zrtva.NazivHeroja}. Preostali život žrtve: {zrtva.BrZivotnihPoena}");
+            
             if (zrtva.BrZivotnihPoena == 0)
             {
-                Console.WriteLine($"{zrtva.NazivHeroja} je eliminisan!");
-                // Logika eliminacije žrtve
+               Console.WriteLine($"{zrtva.NazivHeroja} je eliminisan!");
+           
+
             }
-            else
-            {
-                // Ispis nakon napada, kad žrtva još ima život
-                Console.WriteLine($"{napadac.NazivHeroja} je napao {zrtva.NazivHeroja}. Preostali život žrtve: {zrtva.BrZivotnihPoena}");
-            }
+           
         }
         private void PrikaziNapadNaPomocniEntitet(Heroj napadac, PomocniEntitet entitet)
         {
             Console.WriteLine($"{napadac.NazivHeroja} napada pomoćni entitet {entitet.NazivEntiteta}. Život pomoćnog entiteta {entitet.NazivEntiteta}: {entitet.ZivotniPoeni}");
-
+            NapadniPomocniEntitet(napadac, entitet);
+            Console.WriteLine($"{napadac.NazivHeroja} je napao pomoćni entitet. Preostali život pomoćnog entiteta: {entitet.ZivotniPoeni}");
             if (entitet.ZivotniPoeni == 0)
             {
                 Console.WriteLine($"Pomoćni entitet {entitet.NazivEntiteta} je eliminisan!");
-                // Logika eliminacije pomoćnog entiteta
+               
+                
             }
-            else
-            {
-                // Ispis nakon napada, kad pomoćni entitet još ima život
-                Console.WriteLine($"{napadac.NazivHeroja} je napao pomoćni entitet. Preostali život pomoćnog entiteta: {entitet.ZivotniPoeni}");
-            }
+           
+            
         }
 
 

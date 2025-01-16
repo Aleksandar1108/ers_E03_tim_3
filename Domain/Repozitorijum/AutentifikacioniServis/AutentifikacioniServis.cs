@@ -18,20 +18,17 @@ namespace Domain.Repozitorijum.AutentifikacioniServis
                    new("David","54321")
                 ];
         }
-        public bool Prijava(string korisnickoIme, string lozinka, out Korisnik? prijavljen)
+        public (bool, Korisnik) Prijava(string korisnickoIme, string lozinka)
         {
             foreach (Korisnik korisnik in korisnici)
             {
                 if (korisnik.KorisnickoIme.Equals(korisnickoIme) && korisnik.Lozinka.Equals(lozinka))
                 {
-                    prijavljen = korisnik;
-                    return true;
+                    return (true, korisnik);
                 }
             }
 
-            prijavljen = null;
-            return false;
-
+            return (false, new Korisnik());
         }
     }
 }

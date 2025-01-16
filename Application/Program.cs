@@ -60,7 +60,10 @@ namespace Application
 
                 AutentifikacioniServis autentifikacioniServis = new AutentifikacioniServis();
 
-            while (!autentifikacijaServis.Prijava(korisnickoIme.Trim(), lozinka.Trim(), out prijavljen))
+
+            (bool uspesnaAutentifikacija, prijavljen) = autentifikacijaServis.Prijava(korisnickoIme.Trim(), lozinka.Trim());
+
+            while (!uspesnaAutentifikacija)
             {
                 if (!string.IsNullOrWhiteSpace(korisnickoIme) && !string.IsNullOrWhiteSpace(lozinka))
                 {
@@ -75,7 +78,7 @@ namespace Application
             }
 
             // Kada je prijava uspešna
-            Console.WriteLine($"Korisnik '{prijavljen?.KorisnickoIme}' je uspešno prijavljen!");
+            Console.WriteLine($"Korisnik '{korisnickoIme}' je uspešno prijavljen!");
 
             Mape mapa = new Mape();
             Prodavnica prodavnica = new Prodavnica();

@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Tests.Services.AutentifikacioniServisi
 {
     public class AutentifikacioniServisiTests
@@ -36,13 +37,13 @@ namespace Tests.Services.AutentifikacioniServisi
             _authServis.Setup(x => x.Prijava(korisnickoIme, lozinka)).Returns((true, korisnik));
 
             // Simuliranje ponasanja nad laziranim objektom servisa
-
+            (bool uspesnaAutentifikacija, Korisnik prijavljen) = _authServis.Object.Prijava(korisnickoIme, lozinka);
 
             // Provera da li je ocekivani rezultat jednak rezultatu testa
-            Assert.That(uspesnaAutentifikacija, Is.True);
-            Assert.That(prijavljen, Is.Not.Null);
-            Assert.That(prijavljen.KorisnickoIme, Is.EqualTo(korisnickoIme));
-            Assert.That(prijavljen.Lozinka, Is.EqualTo(lozinka));
+            NUnit.Framework.Assert.That(uspesnaAutentifikacija, Is.True);
+            NUnit.Framework.Assert.That(prijavljen, Is.Not.Null);
+            NUnit.Framework.Assert.That(prijavljen.KorisnickoIme, Is.EqualTo(korisnickoIme));
+            NUnit.Framework.Assert.That(prijavljen.Lozinka, Is.EqualTo(lozinka));
         }
 
         [Test]
@@ -60,8 +61,8 @@ namespace Tests.Services.AutentifikacioniServisi
             (bool uspesnaAutentifikacija, korisnik) = _authServis.Object.Prijava(korisnickoIme, lozinka);
 
             // Provera da li je ocekivani rezultat jednak rezultatu testa
-            Assert.That(uspesnaAutentifikacija, Is.False);
-            Assert.That(korisnik.KorisnickoIme, Is.Empty);
+            NUnit.Framework.Assert.That(uspesnaAutentifikacija, Is.False);
+            NUnit.Framework.Assert.That(korisnik.KorisnickoIme, Is.Empty);
         }
     }
 }

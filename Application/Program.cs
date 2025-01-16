@@ -22,6 +22,7 @@ using Domain.Repozitorijum.RepozitorijumProdavnica;
 using Domain.Repozitorijum.RepozitorijumEntitet;
 using Services.BitkaServisi;
 using Services.TimoviServis;
+using Services.ProdavnicaServis;
 
 namespace Application
 {
@@ -92,7 +93,8 @@ namespace Application
             ITimoviServis timoviServis = new TimoviServis();
             IBorbaServis borbaServis = new BitkaServis();
             IEntitetRepozitorijum pomocniEntitet = new RepozitorijumEntitet();
-            IspisMenia ispis = new IspisMenia(mapa, prodavnica, plaviTim, crveniTim, herojRepozitorijum, meniZaStatistiku, nasumicnoGenMape, mapaRep, nasumicnoGenProd, prodavnicaRep, timoviServis,borbaServis,pomocniEntitet);
+            IProdavnicaServis prodavnicaServis = new ProdavnicaServis();
+            IspisMenia ispis = new IspisMenia(mapa, prodavnica, plaviTim, crveniTim, herojRepozitorijum, meniZaStatistiku, nasumicnoGenMape, mapaRep, nasumicnoGenProd, prodavnicaRep, timoviServis,borbaServis,pomocniEntitet, prodavnicaServis );
 
             ispis.PrikaziMeni();
         }

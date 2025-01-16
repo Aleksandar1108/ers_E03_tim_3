@@ -37,8 +37,9 @@ namespace Presentations.IpsisMenija
         private List<Predmet> predmeti = new List<Predmet>();
         private readonly Presentations.MeniZaStatistiku.MeniZaStatistiku meniZaStatistiku;
         bool podaciGenerisani = false;
+        private readonly IProdavnicaServis prodavnicaServis;
 
-        public IspisMenia(Mape mapa, Prodavnica prodavnica, List<Heroj> plaviTim, List<Heroj> crveniTim, IHerojiRepozitorijum herojRep, MeniZaStatistiku.MeniZaStatistiku meniZaStatistiku, NasumicnoGenerisanjeMape nasumicnoGenerisanjeMape, RepozitorijumMapa mapaRepozitorijum,NasumicnoGenerisanjeProdavnice nasumicnoGenerisanjeProdavnice,IProdavnicaRepozitorijum prodavnicaRepozitorijum,ITimoviServis timoviServis,IBorbaServis servis,IEntitetRepozitorijum pomocniEntitet)
+        public IspisMenia(Mape mapa, Prodavnica prodavnica, List<Heroj> plaviTim, List<Heroj> crveniTim, IHerojiRepozitorijum herojRep, MeniZaStatistiku.MeniZaStatistiku meniZaStatistiku, NasumicnoGenerisanjeMape nasumicnoGenerisanjeMape, RepozitorijumMapa mapaRepozitorijum,NasumicnoGenerisanjeProdavnice nasumicnoGenerisanjeProdavnice,IProdavnicaRepozitorijum prodavnicaRepozitorijum,ITimoviServis timoviServis,IBorbaServis servis,IEntitetRepozitorijum pomocniEntitet, IProdavnicaServis prodavnicaServis)
         { 
             //ovde nam fale za nasumicno generisanje
             //to cemo dodati kad uradimo generisanje bitke, timova...
@@ -55,6 +56,8 @@ namespace Presentations.IpsisMenija
             this.timoviServis = timoviServis;
             this.servis = servis;
             this.pomocniEntitet = pomocniEntitet;
+            this.prodavnicaServis = prodavnicaServis;
+            
         }
 
         public void PrikaziMeni()
@@ -260,8 +263,27 @@ namespace Presentations.IpsisMenija
                             
                             string nazivPT = "plavi";
                             string nazivCT = "crveni";
-                            int rez = 0;
-                            meniZaStatistiku.MeniStatistika(mapa, sviHerojiPlavi2, sviHerojiCrveni2, rez, nazivPT, nazivCT);
+                            //int rez = 0;
+
+                            int ukupnaSumaKupovine = 0;
+                            var sviHeroji = PlaviTim.Concat(CrveniTim);
+
+                            foreach (var heroj in sviHeroji) // Kombinujemo oba tima
+                            {
+                                foreach (var predmet in predmeti)
+                                {
+                                    if (prodavnicaServis.KupiPredmet(heroj, prodavnica, predmet.NazivPredmeta))
+                                    {
+                                        // Sumo prodaje samo ako je kupovina uspešna
+                                        ukupnaSumaKupovine += predmet.CenaKomada;
+                                    }
+                                }
+                            }
+
+
+
+
+                            meniZaStatistiku.MeniStatistika(mapa, sviHerojiPlavi2, sviHerojiCrveni2, ukupnaSumaKupovine, nazivPT, nazivCT);
 
                             // Unos broja igrača po timu ako nije ranije definisan
                         }

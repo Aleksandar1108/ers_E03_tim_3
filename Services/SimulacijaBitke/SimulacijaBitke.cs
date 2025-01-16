@@ -119,7 +119,7 @@ namespace Services.ProdavnicaServis
 
                         // Покрените куповину
                         ProdavnicaServis prodavnicaServis = new ProdavnicaServis();
-                        bool uspehKupovine = prodavnicaServis.KupiPredmet(PlaviHeroj, prodavnica, predmetZaKupovinu.NazivPredmeta);
+                        bool uspehKupovine = prodavnicaServis.KupiPredmet(CrveniHeroj, prodavnica, predmetZaKupovinu.NazivPredmeta);
 
                         // Испис резултата куповине
                         if (uspehKupovine)

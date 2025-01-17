@@ -263,23 +263,28 @@ namespace Presentations.IpsisMenija
                             
                             string nazivPT = "plavi";
                             string nazivCT = "crveni";
-                            //int rez = 0;
+                            
 
                             int ukupnaSumaKupovine = 0;
                             var sviHeroji = PlaviTim.Concat(CrveniTim);
 
-                            foreach (var heroj in sviHeroji) // Kombinujemo oba tima
+                           
+                             Console.WriteLine("===========INFORMACIJE O KUPOVINAMA====================");
+                            foreach (var heroj in sviHeroji)
                             {
+                               
                                 foreach (var predmet in predmeti)
                                 {
-                                    if (prodavnicaServis.KupiPredmet(heroj, prodavnica, predmet.NazivPredmeta))
+                                    bool uspehKupovine = prodavnicaServis.KupiPredmet(heroj, prodavnica, predmet.NazivPredmeta);
+                                    if (uspehKupovine)
                                     {
-                                        // Sumo prodaje samo ako je kupovina uspešna
                                         ukupnaSumaKupovine += predmet.CenaKomada;
+                                        Console.WriteLine($"{heroj.NazivHeroja} je kupio {predmet.NazivPredmeta} za {predmet.CenaKomada}.");
                                     }
+                                   
                                 }
                             }
-
+                            Console.WriteLine("===========================================================");
 
 
 

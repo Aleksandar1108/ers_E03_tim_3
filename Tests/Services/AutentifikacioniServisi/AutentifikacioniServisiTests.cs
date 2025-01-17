@@ -47,8 +47,8 @@ namespace Tests.Services.AutentifikacioniServisi
         }
 
         [Test]
-        [TestCase("danijel", "123")]
-        [TestCase("jovana", "123")]
+        [TestCase("david", "131")]
+        [TestCase("aca", "122")]
         public void PrijavaSaNeispravnimPodacima_VracaFalse(string korisnickoIme, string lozinka)
         {
             // Kreiranje potrebnih promenljivih za test

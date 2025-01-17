@@ -23,7 +23,7 @@ namespace Services.TimoviServis
 
             // Nasumično mešanje heroja
             var nasumicnoPromesaniHeroji = heroji.OrderBy(h => Guid.NewGuid()).ToList();
-            Console.WriteLine($"Broj heroja nakon nasumičnog mešanja: {nasumicnoPromesaniHeroji.Count}");
+           
 
             // Deljenje heroja u timove
             var plaviTim = nasumicnoPromesaniHeroji.Take(maxBrojIgraca).ToList();

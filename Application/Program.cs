@@ -30,51 +30,33 @@ namespace Application
     {
         static void Main(string[] args)
         {
-            // Mape mapa = new Mape("naziv",TipMape.Tip.ZIMSKA, 10,"npt", "nct",4); // Pretpostavimo da ima podrazumevani konstruktor
-            //Prodavnica prodavnica = new Prodavnica();
-            //List<Heroj> plaviTim = new List<Heroj>();
-            //List<Heroj> crveniTim = new List<Heroj>();
-            // IHerojiRepozitorijum herojRep = null; // Trebaš konkretan objekat koji implementira ovaj interfejs
-            // IPrikazStatistike prikaz; 
-            // IPrikazStatistikeDatoteka prikazDa;
-            //MeniZaStatistiku meniZaStatistiku = new MeniZaStatistiku(prikaz, prikazDa); // Pretpostavka o konstruktoru
-
-            // Kreiranje instance klase IspisMenia
-            //IspisMenia ispisMenia = new IspisMenia(mapa, prodavnica, plaviTim, crveniTim, herojRep, meniZaStatistiku);
-
-            // Poziv metode PrikaziMeni
-            //ispisMenia.PrikaziMeni();
 
 
-                string?  korisnickoIme = "", lozinka = "";
-                Korisnik? prijavljen;
+            string korisnickoIme = "", lozinka = "";
+            Korisnik? prijavljen;
 
-                // Servisi
-                IServisAutentifikacije autentifikacijaServis = new AutentifikacioniServis();
-                //IZapisiServis servis;
-                //ILoggerServis logger = new FileLoggerServis();
+            // Servisi
+            IServisAutentifikacije autentifikacijaServis = new AutentifikacioniServis();
 
-                Console.WriteLine("\n============== PRIJAVA ==============");
+            Console.WriteLine("\n============== PRIJAVA ==============");
 
-
-
-                AutentifikacioniServis autentifikacioniServis = new AutentifikacioniServis();
-
-
-            (bool uspesnaAutentifikacija, prijavljen) = autentifikacijaServis.Prijava(korisnickoIme.Trim(), lozinka.Trim());
+            bool uspesnaAutentifikacija = false;
 
             while (!uspesnaAutentifikacija)
             {
-                if (!string.IsNullOrWhiteSpace(korisnickoIme) && !string.IsNullOrWhiteSpace(lozinka))
-                {
-                    Console.WriteLine("Prijava nije uspela. Proverite korisničko ime i lozinku.");
-                }
-
                 Console.Write("Korisničko ime: ");
                 korisnickoIme = Console.ReadLine() ?? "";
 
                 Console.Write("Lozinka: ");
                 lozinka = Console.ReadLine() ?? "";
+
+                // Pozivamo metodu za proveru prijave
+                (uspesnaAutentifikacija, prijavljen) = autentifikacijaServis.Prijava(korisnickoIme.Trim(), lozinka.Trim());
+
+                if (!uspesnaAutentifikacija)
+                {
+                    Console.WriteLine("Prijava nije uspela. Proverite korisničko ime i lozinku.");
+                }
             }
 
             // Kada je prijava uspešna
@@ -89,7 +71,7 @@ namespace Application
             IHerojiRepozitorijum herojRepozitorijum = new RepozitorijumHeroji();
             MeniZaStatistiku meniZaStatistiku = new MeniZaStatistiku(prikazStatistikeKonzolono,prikazStatistikeDatoteke);
             NasumicnoGenerisanjeMape nasumicnoGenMape = new NasumicnoGenerisanjeMape();
-            //IMapaRepozitorijum mapaRep = new RepozitorijumMapa();
+            
             RepozitorijumMapa mapaRep = new RepozitorijumMapa();
             NasumicnoGenerisanjeProdavnice nasumicnoGenProd = new NasumicnoGenerisanjeProdavnice();
             IProdavnicaRepozitorijum prodavnicaRep = new RepozitorijumProdavnica();

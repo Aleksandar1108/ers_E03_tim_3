@@ -18,8 +18,7 @@ namespace Services.TimoviServis
                 throw new ArgumentException("Nedovoljno heroja za kreiranje timova.");
             }
 
-            Console.WriteLine($"Ukupan broj heroja: {heroji.Count}");
-            Console.WriteLine($"Maksimalni broj igrača po timu: {maxBrojIgraca}");
+            
 
             // Nasumično mešanje heroja
             var nasumicnoPromesaniHeroji = heroji.OrderBy(h => Guid.NewGuid()).ToList();
@@ -28,6 +27,9 @@ namespace Services.TimoviServis
             // Deljenje heroja u timove
             var plaviTim = nasumicnoPromesaniHeroji.Take(maxBrojIgraca).ToList();
             var crveniTim = nasumicnoPromesaniHeroji.Skip(maxBrojIgraca).Take(maxBrojIgraca).ToList();
+
+            Console.WriteLine($"Ukupan broj heroja: {plaviTim.Count+crveniTim.Count}");
+            Console.WriteLine($"Maksimalni broj igrača po timu: {maxBrojIgraca}");
 
             Console.WriteLine($"Plavi tim ({plaviTim.Count} heroja): {string.Join(", ", plaviTim.Select(h => h.NazivHeroja))}");
             Console.WriteLine($"Crveni tim ({crveniTim.Count} heroja): {string.Join(", ", crveniTim.Select(h => h.NazivHeroja))}");
